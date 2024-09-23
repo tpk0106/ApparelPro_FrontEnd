@@ -1,0 +1,84 @@
+* {
+  font-size: small;
+}
+
+mat-form-field {
+  display: block;
+  margin: 10px 0;
+}
+
+mat-form-field input {
+  font-size: 10px;
+}
+
+mat-error {
+  font-size: 10px;
+}
+
+mat-label {
+  font-size: 10px;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: blue;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: green($color: #5c3a3a);
+}
+/* 
+button > mat-flat-button {
+  background-color: #399fdf;
+}
+
+.mybutton {
+  background-color: #399fdf;
+} */
+/* 
+.primary {
+  color: #fff;
+  font-weight: 700;
+  background-color: #85c1e7;
+} */
+/* 
+.btn-theme {
+  height: 40px;
+  border: none;
+  font-size: 13px;
+  background-color: var(--button-primary-color);
+  color: var(--button-text-color);
+  background-color: orange;
+} */
+
+.main-submit-button {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 1.5rem;
+  border: 1px solid #000;
+}
+.main-submit-button:hover {
+  background-color: #000;
+  color: rgb(249 115 22 / 1);
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+.label {
+  font-size: small;
+}
+/* 
+.mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field.mdc-notched-outline__notch,
+.mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-width: 2px;
+}
+
+.mat-mdc-form-field .mdc-notched-outline__notch {
+  margin-left: -1px;
+  -webkit-clip-path: inset(-9em -999em -9em 1px);
+  clip-path: inset(-9em -999em -9em 1px);
+} */

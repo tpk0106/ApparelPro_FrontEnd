@@ -1,0 +1,134 @@
+<!-- angular material table -->
+<div class="container mt-3">
+  <div class="flex flex-row justify-between">
+    <!-- <div class="w-1/6"></div> -->
+    <div class="w-full flex flex-col">
+      <div>
+        <mat-form-field
+          appearance="outline"
+          class="form-field"
+          [hidden]="!loadEntries"
+          class="mat-form-field1 filter"
+          style="font-size: x-small"
+        >
+          <mat-radio-group
+            aria-labelledby="radio-group-label"
+            class="radio-group"
+            formControlName="baseCurr"
+          >
+            <div>
+              <label id="radio-group-label"
+                >Select column name to filter :
+              </label>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                value="baseCurrency"
+                class="radio-button"
+              >
+                Base Currency
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="quoteCurrency"
+              >
+                Quote Currency
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="rate"
+              >
+                Rate
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="exchangeDate"
+              >
+                Exchange Date
+              </mat-radio-button>
+            </div>
+          </mat-radio-group>
+          <div style="display: flex; margin-left: 10px">
+            <mat-icon>search</mat-icon>
+            <input
+              class="filter"
+              matInput
+              #filter
+              [placeholder]="placeholder"
+              (keyup)="filterChanged.next(filter.value)"
+            />
+          </div>
+        </mat-form-field>
+      </div>
+      <table
+        mat-table
+        [dataSource]="entries"
+        class="mat-elevation-z8"
+        matSort
+        [matSortActive]="defaultSortColumn"
+        [matSortDirection]="defaultSortOrder"
+        (matSortChange)="loadEntries(this.filterQuery!)"
+      >
+        <ng-container matColumnDef="baseCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Base Currency ( 1 Unit)
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.baseCurrency }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.rate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quoteCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Quote Currency
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            <button
+              mat-flat-button
+              class="linkButton"
+              (click)="editEntry(currencyExchange)"
+            >
+              {{ currencyExchange.quoteCurrency }}
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="exchangeDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Exchange Date
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.exchangeDate | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+      <div style="height: 20px"></div>
+      <mat-paginator
+        (page)="getEntries($event)"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+    </div>
+    <!-- <div class="w-1/6"></div> -->
+  </div>
+</div>
+
+<!-- https://www.geeksforgeeks.org/what-is-the-use-of-bootstrap-datepicker-in-angular -->
+
+<!-- https://stackoverflow.com/questions/71566807/angular-ngbdatepicker-display-date-format -->
+<!-- https://www.npmjs.com/package/primeng -->
+<!-- https://primeng.org/ -->

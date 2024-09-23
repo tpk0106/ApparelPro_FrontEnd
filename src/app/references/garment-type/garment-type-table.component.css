@@ -1,0 +1,63 @@
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+mat-form-field {
+  display: block;
+  margin: 10px 0;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: blue;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: green($color: #5c3a3a);
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+  background-color: #fff;
+  opacity: 1 !important;
+}
+
+.mat-icon-button:hover .mat-button-focus-overlay {
+  opacity: 1 !important;
+}
+
+.main-submit-button:hover {
+  background-color: #000;
+  color: rgb(249 115 22 / 1);
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+.main-submit-button {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 1.5rem;
+  border: 1px solid #000;
+}
+
+.filter {
+  background-color: #fff;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  /* margin: 5px 15px; */
+  align-items: flex-start;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+table {
+  width: 50%;
+}

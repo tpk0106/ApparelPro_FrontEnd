@@ -1,0 +1,100 @@
+<!-- angular material table -->
+<div class="container mt1-3 bg-transparent">
+  <div class="flex flex-row justify-between">
+    <div class="w-full flex flex-col">
+      <div style1="border: 2px solid red">
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="form-field"
+            [hidden]="!currencyConversions"
+            class="mat-form-field1 filter"
+          >
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              formControlName="fromCurrency"
+            >
+              <div>
+                <label id="radio-group-label"
+                  >Select column name to filter :
+                </label>
+                <mat-radio-button
+                  (change)="radioChange($event)"
+                  value="fromCurrency"
+                  class="radio-button shadow-effects"
+                >
+                  From Currency
+                </mat-radio-button>
+                <mat-radio-button
+                  (change)="radioChange($event)"
+                  value="toCurrency"
+                  class="radio-button shadow-effects"
+                >
+                  To Currency
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+
+            <input
+              class="filter"
+              matInput
+              #filter
+              [placeholder]="placeholder"
+              (keyup)="filterChanged.next(filter.value)"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <table
+        mat-table
+        [dataSource]="entries"
+        class="mat-elevation-z8"
+        matSort
+        [matSortActive]="defaultSortColumn"
+        [matSortDirection]="defaultSortOrder"
+        (matSortChange)="loadEntries(this.filterQuery!)"
+      >
+        <ng-container matColumnDef="fromCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let currencyConversion">
+            {{ currencyConversion.fromCurrency }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="toCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+          <td mat-cell *matCellDef="let currencyConversion">
+            {{ currencyConversion.toCurrency }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+          <td mat-cell *matCellDef="let currencyConversion">
+            <button
+              mat-flat-button
+              class="linkButton"
+              (click)="editEntry(currencyConversion)"
+            >
+              {{ currencyConversion.value }}
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+
+      <div style="height: 20px"></div>
+      <mat-paginator
+        (page)="getEntries($event)"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

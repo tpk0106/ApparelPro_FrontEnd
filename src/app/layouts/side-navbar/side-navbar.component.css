@@ -1,0 +1,192 @@
+/*@import 'bootstrap';*/
+#nb {
+  /* position: fixed;
+    z-index: 999; */
+}
+.navbar-brand img {
+  width: 10em;
+  float: left;
+}
+
+.navbar-nav {
+  width: 100%;
+  border: 1px solid #711515;
+  position: relative;
+}
+
+.nav-item {
+  font-size: 100%;
+  position: relative;
+}
+
+/* menu item*/
+.navbar-nav .nav-item {
+  color: gold;
+  color: yellow;
+  color: linear-gradient(to right, #ffdf00, #f0d42b, #e2c93f, #d3be4d, #c5b358);
+  border: 5px solid gold;
+  width: 100%;
+  background-color: #fff;
+  font-weight: 500;
+  font-size: 120%;
+  background-image: linear-gradient(
+    to right,
+    #000000,
+    #3b3b3b,
+    #777777,
+    #b9b9b9,
+    #ffffff
+  );
+  background-image: linear-gradient(
+    to right,
+    #000000,
+    #151515,
+    #242424,
+    #323232,
+    #424242
+  );
+}
+
+ul #menu {
+  text-decoration: none;
+}
+
+ul li a.nav-item {
+  color: #ffffff;
+}
+
+.navbar .nav-item ul ul li {
+  /* border-bottom: 1px solid #711515; */
+  margin: 0;
+}
+
+/*
+ ul ul li ul, ul ul li ul {
+     list-style: none;
+     border: 5px solid red;
+    
+ }
+ 
+ ul ul li ul, ul ul li ul {
+     list-style: none;
+     border: 5px solid blue;
+    
+ }*/
+
+/* main menu full */
+ul {
+  margin-left: 1px;
+}
+/* full dropdown menu */
+
+ul ul {
+  list-style: none;
+  background-color: #b51032;
+  background-color: #711515;
+  margin-left: 20px;
+}
+
+#parent {
+  background-color: #711515;
+  margin: 0 5px;
+  /* margin-left: 4px; */
+}
+
+/* parnt margin */
+#parent #child {
+  margin-left: 12px;
+}
+/* dropdown menu each*/
+ul ul li a {
+  color: #fff;
+  padding-left: 5px;
+  border-bottom: 1px solid #711515;
+}
+
+/* normal menu */
+ul li {
+  background-color: #b51032;
+  color: #fff;
+  border-bottom: 1px solid #711515;
+
+  /* padding-left: 4px; */
+  margin-left: 4px;
+  box-shadow: -3px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  /* border-start-end-radius: 20%; */
+}
+/* normal menu */
+ul li a {
+  padding-left: 4px;
+  border: 2px solid yellow;
+}
+
+.nav-toggle:checked ~ nav {
+  display: block;
+}
+
+.fas1:checked ~ ul {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* single menu hover */
+ul li:hover > * {
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  background-color: #711515;
+}
+
+ul li:hover > ul > li {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid green;
+  /* background-color: orange; */
+}
+
+li > ul > li > ul > li {
+  background-color: #711515;
+  background-color: blue;
+}
+
+li > ul > ul > li {
+  background-color: #b51032;
+  background-color: blue;
+}
+
+#parent > #child:hover > #parent > #parent1 {
+  background-color: orange;
+  border: 5px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+
+/* drodown menu hover */
+#parent > #parent1 :hover {
+  background-color: #711515;
+  border-bottom: 1px solid #711515;
+}
+
+/* dropwndown menu each border */
+#parent > #parent1 > li {
+  /* border: 1px solid #ff7788; */
+  background-color: #b51032;
+  /* border-bottom: 4px solid gray; */
+  border-bottom: 1px solid #711515;
+}
+
+li:has(ul) > a:after {
+  content: " zzzzzzzzzzzzzzzzzzz";
+  /* arrow styling */
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  /* width: 100%; */
+}

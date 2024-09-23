@@ -1,0 +1,57 @@
+<div class="main-container" style1="font-size: 12px">
+  <nav class="menu-background" style1="border: 3px solid yellow; width: 15%">
+    <ul
+      style1="margin: 0; border: 3px solid rgb(104, 186, 129); overflow: hidden"
+    >
+      @for (menu of navData; track menu.routerLink) {
+      @if(menu.subMenus!==null){<mat-icon style1="font-size: 10px"
+        >add-circle-outline</mat-icon
+      >}
+
+      <button
+        class="{{ menu.routerLink }} menu-item border-bottom-menu"
+        mat-menu-item
+        style="z-index: 1050; margin-left: 0"
+        hasBackdrop="false"
+        (click)="displayRef($event, 'ref')"
+      >
+        {{ menu.label }}
+      </button>
+
+      @if(menu.submenus !== null) {
+      <ul class="{{ menu.routerLink }}">
+        @for(subMenu of menu.subMenus; track subMenu.routerLink;let count =
+        $count;){
+        <button
+          class="{{ subMenu.routerLink }}"
+          mat-menu-item
+          mat-flat-button1
+          style="
+            z-index: 1050;
+            display: none;
+            margin: 3px;
+            font-size: 10px;
+            border: 2px solid red;
+          "
+          hasBackdrop1="false"
+          (click)="clickNavbarLink($event)"
+          routerLink="{{ subMenu.routerLink }}"
+        >
+          <mat-icon
+            mat-list-icon
+            [matTooltip]="!isExpanded ? subMenu.label : null"
+            matTooltipPosition="right"
+          >
+            {{ subMenu.icon }}</mat-icon
+          >
+          {{ subMenu.label }}
+        </button>
+        }
+      </ul>
+      } }
+    </ul>
+  </nav>
+  <!-- <div style="border: 3px solid yellow">
+    <button class="click-button" (click)="drawerClick($event)">press</button>
+  </div> -->
+</div>

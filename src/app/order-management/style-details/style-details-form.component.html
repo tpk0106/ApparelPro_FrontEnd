@@ -1,0 +1,114 @@
+<div class="dialog-color1">
+  <mat-dialog-content class="dialog-color1">
+    <form [formGroup]="styleDetailsForm">
+      <!-- garment type -->
+      <mat-form-field
+        *ngIf="garmentTypes"
+        appearance="outline"
+        class="form-field"
+      >
+        <mat-label> Select Garment Type</mat-label>
+        <mat-select id="garmentType" formControlName="garmentType">
+          <mat-option *ngFor="let type of garmentTypes" [value]="type.id">
+            {{ type.typeName }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error
+          *ngIf="styleDetailsForm.get('garmentType')?.hasError('required')"
+        >
+          Please select Garment Type
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Style</mat-label>
+        <input
+          matInput
+          formControlName="styleCode"
+          placeholder="select style for the Order"
+          required
+        />
+        <mat-error
+          *ngIf="styleDetailsForm.get('styleCode')?.hasError('required')"
+          >Order Style required</mat-error
+        >
+      </mat-form-field>
+
+      <!-- unit -->
+      <mat-form-field *ngIf="units" appearance="outline" class="form-field">
+        <mat-label> Select Unit</mat-label>
+        <mat-select id="unit" formControlName="unit">
+          <mat-option *ngFor="let unit of units" [value]="unit.code">
+            {{ unit.code }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="styleDetailsForm.get('code')?.hasError('required')">
+          Unit required
+        </mat-error>
+        <mat-hint>click the drop down list to reveal Units</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Quantity</mat-label>
+
+        <input
+          matNativeControl
+          matInput
+          formControlName="quantity"
+          placeholder="quantity"
+          type="number"
+          required
+        />
+        <mat-error
+          *ngIf="styleDetailsForm.get('quantity')?.hasError('required')"
+          >Quantity required. only numeric allowed
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Unit Price</mat-label>
+        <input
+          matInput
+          formControlName="unitPrice"
+          placeholder="Unit Price"
+          type="number"
+          required
+        />
+        <mat-error
+          *ngIf="styleDetailsForm.get('unitPrice')?.hasError('required')"
+          >Unit Price required. only numeric allowed</mat-error
+        >
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!styleDetailsForm.valid"
+          (click)="submitEntry(styleDetailsForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button mat-raised-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

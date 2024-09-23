@@ -1,0 +1,15 @@
+.sideButton {
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.click-button {
+  height: 100%;
+  width: 40px;
+  vertical-align: auto;
+  background-color: black;
+  color: #fff;
+}

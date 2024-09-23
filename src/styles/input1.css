@@ -1,0 +1,128 @@
+/* https://github.com/primefaces/primeng/issues/14255 */
+/* PrimeNg */
+
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+/* PrimeNg */
+
+.btn {
+  @apply rounded-md;
+}
+
+.text-error {
+  @apply text-red-600;
+  @apply border-red-600 border-[1px];
+}
+
+.main-submit-button {
+  @apply bg-blue-500;
+  @apply text-white;
+  @apply font-semibold;
+  @apply rounded-[4px];
+  @apply px-6 py-1;
+  @apply border border-black border-solid;
+}
+
+.data-table-header {
+  @apply bg-black;
+  @apply text-orange-600;
+}
+
+.shadow-effects {
+  /* @apply shadow-[0 0 33px -10px rgb(71, 114, 254, 0.3)]; */
+}
+
+.table-col-padding {
+  @apply px-5;
+}
+
+.label-x-small {
+  @apply text-sm;
+}
+
+.custom-dialog-color {
+  .dialog-color {
+    background-color: aquamarine;
+  }
+}
+
+/* // override material inline style to allow mini nav state */
+mat-sidenav[style] {
+  visibility: visible !important;
+}
+.mat-drawer {
+  transform: none !important;
+}
+/* 
+.btn-orange {
+  @apply bg-menu-orange text-black;
+}
+
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.base-flex {
+  @apply flex flex-1 flex-col sm:flex-row items-center;
+}
+
+.flex-items-adjust {
+  @apply content-between justify-between;
+} */
+
+/* content-center justify-between */
+/* 
+.flex-md-lg-wrap {
+  @apply md:flex-wrap lg:flex-nowrap;
+} */
+
+/* .menu-shadow{
+    @apply shadow-menu-black-dark shadow-2xl
+} */
+/* 
+body{
+    background-image: url('../src/assets/images/69-694072_roses-rose-pinkroses-pink-flowers-flower-floral-circle.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+/* 
+.btn-theme {
+  height: 40px;
+  border: none;
+  font-size: 13px;
+  background-color: var(--button-primary-color);
+  color: var(--button-text-color);
+} */
+/* 
+:root {
+  --primary-color: #026467;
+  --secondary-color: #e5f5ea;
+  --body-text-color: #596392;
+  --navbar-footer-color: #f9f9f9;
+  --button-primary-color: orange;
+  --button-text-color: #fff;
+} */
+/* margin: auto;
+text-align: center;
+color: orange;
+font-weight: 12;
+font-size: 8;
+background: #000; */
+
+/* @import "tailwindcss/base" layer(tailwindcss);
+@import "tailwindcss/components" layer(tailwindcss);
+@import "tailwindcss/utilities" layer(tailwindcss); */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+/* @import "primeng/resources/primeng.css"; */
+/* @import "primeng/resources/themes/lara-light-blue/theme.css"; */
+@import "primeng/resources/themes/rhea/theme.css";

@@ -1,0 +1,235 @@
+<div>
+  <h1 class="text-3xl text-green-9501 bg-[#996666] text-center mb-2">
+    Register
+  </h1>
+  <h2 class="text-center text-primary">Sign up</h2>
+</div>
+<div class="container" style1="border: 4px solid red">
+  <div class="flex">
+    <div class="w-1/5"></div>
+    <div class="w-3/5">
+      <div class="w-3/5 shadow-effects px-5 py-5 m-auto shadow-xl rounded-xl">
+        <div
+          class="text-center justify-center m-auto bg-green-6001 bg-[#996666] text-black"
+        >
+          <h2 class="text-secondary bg-primary">Register</h2>
+        </div>
+        <div class="flex">
+          <div class="w-full">
+            <form
+              [formGroup]="registerForm"
+              ngSubmit="registerForm.invalid && registerForm.value"
+            >
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="email"
+                  placeholder="email address"
+                  [class.text-error]="
+                    registerForm.get('email')?.errors &&
+                    registerForm.get('email')?.touched
+                  "
+                />
+                <div
+                  *ngIf="registerForm?.get('email')?.hasError('required')"
+                  class="text-error mt-2"
+                >
+                  <span class="p-1">email rquired</span>
+                  <i class="fa-solid fa-exclamation py-2.5 px-1"></i>
+                </div>
+              </div>
+
+              <!-- knownAs -->
+
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="knownAs"
+                  placeholder="known As"
+                  [class.text-error]="
+                    registerForm.get('knownAs')?.errors &&
+                    registerForm.get('knownAs')?.touched
+                  "
+                />
+              </div>
+
+              <!-- password -->
+
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="password"
+                  placeholder="password"
+                  [class.text-error]="
+                    registerForm.get('password')?.errors &&
+                    registerForm.get('password')?.touched
+                  "
+                />
+
+                <div
+                  *ngIf="registerForm?.get('password')?.hasError('required')"
+                  class="text-error mt-2"
+                >
+                  <span class="p-1">password required</span>
+                  <i class="fa-solid fa-exclamation py-2.5 px-1"></i>
+                </div>
+
+                <div
+                  *ngIf="registerForm?.get('password')?.hasError('minlength')"
+                  class="invalid-feedback"
+                >
+                  password minimum length is 8
+                </div>
+              </div>
+
+              <!-- confirm password -->
+
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="confirmpassword"
+                  placeholder="confirm password"
+                  [class.text-error]="
+                    registerForm.get('confirmpassword')?.errors &&
+                    registerForm.get('confirmpassword')?.touched
+                  "
+                />
+
+                <div
+                  *ngIf="
+                    registerForm?.get('confirmpassword')?.hasError('required')
+                  "
+                  class="text-error mt-2"
+                >
+                  <span class="p-1">confirm password required</span>
+                  <i class="fa-solid fa-exclamation py-2.5 px-1"></i>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  registerForm?.get('confirmPassword')?.hasError('isMatching')
+                "
+                class="text-error mt-2"
+              >
+                <span class="p-1"> password does not match</span>
+                <i class="fa-solid fa-exclamation py-2.5 px-1"></i>
+              </div>
+
+              <!-- city -->
+
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="city"
+                  placeholder="city"
+                  [class.text-error]="
+                    registerForm.get('city')?.errors &&
+                    registerForm.get('city')?.touched
+                  "
+                />
+              </div>
+
+              <!-- country -->
+
+              <div class="form-group my-3 p-1">
+                <input
+                  type="text"
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="country"
+                  placeholder="country"
+                  [class.text-error]="
+                    registerForm.get('country')?.errors &&
+                    registerForm.get('country')?.touched
+                  "
+                />
+              </div>
+
+              <!-- gender -->
+
+              <div class="form-group">
+                <label class="control-label" style="margin-right: 10px"
+                  >I am a :</label
+                >
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    value="male"
+                    formControlName="gender"
+                  />Male
+                </label>
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    value="female"
+                    formControlName="gender"
+                  />Female
+                </label>
+              </div>
+
+              <!-- date of brith -->
+
+              <!-- <div class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="dateOfBirth"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  [class.is-invalid]="
+                    registerForm.get('dateOfBirth')?.errors &&
+                    registerForm.get('dateOfBirth')?.touched
+                  "
+                  formControlName="dateOfBirth"
+                  [(ngModel)]="dateOfBirth"
+                  placeholder="dd-mm-yyyy"
+                  [minDate]="{ year: 1920, month: 1, day: 1 }"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-info"
+                    (click)="d.toggle()"
+                    type="button"
+                  >
+                    Toggler
+                  </button>
+                </div>
+                <div class="invalid-feedback">Date Of Birth required</div>
+                <pre>Modelxxxx: {{ dateOfBirth | json }}</pre>
+              </div> -->
+
+              <div class="row" *ngIf="validationErrors.length > 0">
+                <ul class="text-danger">
+                  <li class="navlink" *ngFor="let error of validationErrors">
+                    {{ error }}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="form-group text-center d-flex my-5">
+                <app-button
+                  [width]="width"
+                  class="m-2 w-[{{ width }}px]"
+                  caption="Register"
+                  (thisButtonClick)="onRegister(registerForm.value)"
+                ></app-button>
+
+                <app-button
+                  [width]="width"
+                  class="m-2 w-[{{ width }}px]"
+                  caption="Cancel"
+                  (thisButtonClick)="onCancel()"
+                ></app-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-1/5 m-auto" style1="border: 4px solid red"></div>
+  </div>
+</div>

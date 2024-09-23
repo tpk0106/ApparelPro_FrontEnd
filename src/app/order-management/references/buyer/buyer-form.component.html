@@ -1,0 +1,99 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="buyerForm">
+      <mat-divider></mat-divider>
+      <p style="margin: auto">Buyer</p>
+      <mat-divider></mat-divider>
+
+      <!-- <p>
+        <mat-error *ngIf="buyerForm.hasError('isDuplicateCountry') && !edit">
+          <strong>ERROR: </strong>country code,
+          <i>{{ buyerForm.get("code")?.value }}</i
+          >, exist.
+        </mat-error>
+      </p> -->
+
+      <!-- country name -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="country name"
+          required
+          (input)="onInput($event)"
+        />
+        <mat-hint align="end">{{ value().length }}/30</mat-hint>
+
+        <mat-error *ngIf="buyerForm.get('name')?.hasError('required')"
+          >country name required</mat-error
+        >
+        <mat-error *ngIf="buyerForm.get('name')?.hasError('maxlength')"
+          >code maximum length is 15</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Status</mat-label>
+        <input
+          matInput
+          formControlName="status"
+          placeholder="Buyer Status"
+          required
+        />
+        <mat-hint align="end">{{ buyer.status }}</mat-hint>
+
+        <mat-error *ngIf="buyerForm.get('status')?.hasError('required')"
+          >country name required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Tel Nos.</mat-label>
+        <input
+          matInput
+          formControlName="telephoneNos"
+          placeholder="Tel. Nos."
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Mobile Nos.</mat-label>
+        <input matInput formControlName="mobileNos" placeholder="Mobile Nos." />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>CUSDEC</mat-label>
+        <input matInput formControlName="cusdec" placeholder="CUSDEC" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!buyerForm.valid"
+          (click)="submitEntry(buyerForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

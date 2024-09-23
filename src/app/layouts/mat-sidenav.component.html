@@ -1,0 +1,15 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav fixedInViewport="true" mode="side" opened>
+    <!-- <side-nav></side-nav> -->
+    <!-- <app-side-navbar></app-side-navbar> -->
+    <app-testnavbar></app-testnavbar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content-container">
+      <button type="button" mat-button (click)="sidenav.toggle()">
+        Toggle sidenav
+      </button>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

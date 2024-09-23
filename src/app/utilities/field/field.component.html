@@ -1,0 +1,21 @@
+<div>
+  <label>{{ label }}</label>
+  <br />
+  <input
+    type="text"
+    FormControlName="name"
+    class="form-control w-full border-[5px] border-primary rounded-sm shadow-effects"
+    placeholder="name"
+    [class.text-error]="
+      formgroup.get('{field}')?.errors && formgroup.get('{field}')?.touched
+    "
+  />
+
+  <div
+    *ngIf="formgroup?.get('{name}')?.hasError('required')"
+    class="text-error mt-2"
+  >
+    <span class="p-1">country name required.....</span>
+    <i class="fa-solid fa-exclamation py-2.5 px-1"></i>
+  </div>
+</div>

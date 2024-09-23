@@ -1,0 +1,136 @@
+.is-invalid {
+  /* background-color: pink; */
+  border: 1px pink;
+  /* border: 3px solid yellow; */
+}
+/* 
+:host ::ng-deep .calander {
+  border: 1px orange;
+} */
+
+/* :host ::ng-deep .p-calendar .p-datepicker table td.p-datepicker-today > span,
+:host
+  ::ng-deep
+  .p-calendar
+  .p-datepicker
+  table
+  td.p-datepicker-today
+  > span:hover {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+} */
+
+/*  calander display datepicker */
+/* :host ::ng-deep .custom-cal .p-datepicker-calendar {
+  border: 1px solid #996666;
+  background-color: #996666;
+  border-radius: 0.125rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  color: 0 20px 25px -5px #8080, 0 8px 10px -6px #808080;
+} */
+
+:host ::ng-deep p-datepicker-touch-p {
+  /* color: bisque; */
+}
+/* 
+:host ::ng-deep .custom-cal .p-datepicker-calendar thread {
+  border: 1px solid blue;
+  color: yellow;
+  background-color: black;
+} */
+/* 
+:host ::ng-deep p-datepicker-monthpicker {
+  border: 2px solid orange;
+} */
+
+:host ::ng-deep p-button .mybutton {
+  border-radius: 10%;
+}
+
+:host ::ng-deep p-calander .cal {
+  width: 100%;
+}
+
+.input[type="text"] {
+  height: 60px;
+  padding-left: 20px;
+  font-size: 13px;
+  width: 100%;
+  border: 4px solid red;
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+mat-form-field {
+  display: block;
+  margin: 10px 0;
+  font-size: small;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: blue;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: green($color: #5c3a3a);
+}
+
+.main-submit-button:hover {
+  background-color: #000;
+  color: rgb(249 115 22 / 1);
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+.main-submit-button {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 1.5rem;
+  border: 1px solid #000;
+}
+
+.filter {
+  background-color: #fff;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 15px;
+  align-items: flex-start;
+  font-size: small;
+}
+
+.radio-button {
+  margin: 5px;
+  font-size: small;
+}
+
+host::before::ng-deep
+  .mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element {
+  background-color: blue !important;
+}
+
+host::before::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: blue !important; /*inner circle color change*/
+}
+
+host::before::ng-deep.mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: blue !important; /*outer ring color change*/
+}
+
+.label {
+  font-size: small;
+  color: dimgrey;
+}

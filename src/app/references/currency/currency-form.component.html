@@ -1,0 +1,111 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="currencyForm">
+      <p>Currency</p>
+      <mat-divider></mat-divider>
+
+      <p>
+        <mat-error
+          *ngIf="currencyForm.hasError('isDuplicateCurrency') && !edit"
+        >
+          <strong>ERROR: </strong>Currency Code,
+          <i
+            >{{ currencyForm.get("code")?.value }}/Country Code
+            {{ currencyForm.get("countryCode")?.value }}</i
+          >, exist.
+        </mat-error>
+      </p>
+      <!-- currency code -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Currency Code</mat-label>
+        <input
+          matInput
+          formControlName="code"
+          placeholder="currency code"
+          required
+          oninput="this.value=value.toUpperCase()"
+        />
+        <mat-error *ngIf="currencyForm.get('code')?.hasError('required')"
+          >code required</mat-error
+        >
+        <mat-error *ngIf="currencyForm.get('code')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="currencyForm.get('code')?.hasError('maxlength')"
+          >code maximum length is 3</mat-error
+        >
+      </mat-form-field>
+
+      <!-- currency name -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Currency Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="currency name"
+          required
+        />
+        <mat-error *ngIf="currencyForm.get('name')?.hasError('required')"
+          >code required</mat-error
+        >
+        <mat-error *ngIf="currencyForm.get('name')?.hasError('maxlength')"
+          >code maximum length is 15</mat-error
+        >
+      </mat-form-field>
+
+      <!-- country -->
+      <mat-form-field *ngIf="countries" appearance="outline" class="form-field">
+        <mat-label> Select a Country</mat-label>
+        <mat-select id="countryCode" formControlName="countryCode">
+          <mat-option *ngFor="let country of countries" [value]="country.code">
+            <div class="flex flex-row w-full">
+              <div class="countryname-wrapper">
+                {{ country.name }}
+              </div>
+              <div class="image-wrapper">
+                <img
+                  src="{{ imageDataUrl(country.flag) }}"
+                  alt="flag of {{ country.name }}"
+                />
+              </div>
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="currencyForm.get('countryCode')?.hasError('required')"
+        >
+          Please select Country
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!currencyForm.valid"
+          (click)="submitEntry(currencyForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

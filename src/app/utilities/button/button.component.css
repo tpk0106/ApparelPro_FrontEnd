@@ -1,0 +1,21 @@
+.btn-theme {
+  height: 40px;
+  border: none;
+  font-size: 13px;
+  background-color: var(--button-primary-color);
+  color: var(--button-text-color);
+  background-color: orange;
+}
+
+:root {
+  --primary-color: #026467;
+  --secondary-color: #e5f5ea;
+  --body-text-color: #596392;
+  --navbar-footer-color: #f9f9f9;
+  --button-primary-color: orange;
+  --button-text-color: #fff;
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}

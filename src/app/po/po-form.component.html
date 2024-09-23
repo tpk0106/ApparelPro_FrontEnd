@@ -1,0 +1,248 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="poForm">
+      <!-- country name -->
+
+      <!-- <mat-form-field *ngIf="buyers" appearance="outline" class="form-field">
+        <mat-label> Select a Buyer...</mat-label>
+        <mat-select id="buyerCode" formControlName="buyerCode">
+          <mat-option *ngFor="let buyer of buyers" [value]="buyer.buyerCode">
+            {{ buyer.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="poForm.get('buyerCode')?.hasError('required')">
+          Please select buyer
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field> -->
+
+      <!-- order -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Order</mat-label>
+        <input matInput formControlName="order" placeholder="PO" required />
+        <mat-error *ngIf="poForm.get('order')?.hasError('required')"
+          >PO required</mat-error
+        >
+        <mat-error *ngIf="poForm.get('order')?.hasError('maxlength')"
+          >order maximum length is 12</mat-error
+        >
+      </mat-form-field>
+
+      <!-- order date -->
+      <mat-form-field appearance="outline" class="form-field">
+        <input
+          matInput
+          [matDatepicker]="orderDate"
+          [value]="orderDate"
+          formControlName="orderDate"
+        />
+        <mat-hint class="label">DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="orderDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #orderDate></mat-datepicker>
+        <mat-error *ngIf="poForm.get('orderDate')?.hasError('required')"
+          >Order Date required</mat-error
+        >
+      </mat-form-field>
+
+      <!-- garment type -->
+      <mat-form-field
+        *ngIf="garmentTypes"
+        appearance="outline"
+        class="form-field"
+      >
+        <mat-label> Select Garment Type</mat-label>
+        <mat-select id="id" formControlName="garmentType">
+          <mat-option *ngFor="let type of garmentTypes" [value]="type.id">
+            {{ type.typeName }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="poForm.get('garmentType')?.hasError('required')">
+          Please select Garment Type
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <!-- country -->
+      <mat-form-field *ngIf="countries" appearance="outline" class="form-field">
+        <mat-label> Select a Country</mat-label>
+        <mat-select id="countryCode" formControlName="countryCode">
+          <mat-option *ngFor="let country of countries" [value]="country.code">
+            <div class="flex flex-row w-full">
+              <div class="countryname-wrapper">
+                {{ country.name }}
+              </div>
+              <div class="image-wrapper">
+                <img
+                  src="{{ imageDataUrl(country.flag) }}"
+                  alt="flag of {{ country.name }}"
+                />
+              </div>
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="poForm.get('countryCode')?.hasError('required')">
+          Please select Country
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <!-- unit -->
+      <mat-form-field *ngIf="units" appearance="outline" class="form-field">
+        <mat-label> Select Unit</mat-label>
+        <mat-select id="code" formControlName="code">
+          <mat-option *ngFor="let unit of units" [value]="unit.code">
+            {{ unit.code }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="poForm.get('code')?.hasError('required')">
+          Please select unit
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <!-- total qty -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Total Quantity</mat-label>
+        <input
+          matInput
+          formControlName="totalQuantity"
+          placeholder="Total Quantity"
+        />
+        <mat-error *ngIf="poForm.get('totalQuantity')?.hasError('required')">
+          Total quantity required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- currency code -->
+      <mat-form-field
+        *ngIf="currencies"
+        appearance="outline"
+        class="form-field"
+      >
+        <mat-label> Select Currency</mat-label>
+        <mat-select id="currencyCode" formControlName="currencyCode">
+          <mat-option
+            *ngFor="let currency of currencies"
+            [value]="currency.code"
+          >
+            {{ currency.code }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="poForm.get('currencyCode')?.hasError('required')">
+          Please select Currency
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <!-- Season -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Season</mat-label>
+        <input
+          matInput
+          formControlName="season"
+          placeholder="season"
+          required
+        />
+        <mat-error *ngIf="poForm.get('season')?.hasError('required')"
+          >season required</mat-error
+        >
+      </mat-form-field>
+
+      <!-- basis -->
+
+      <mat-form-field *ngIf="basises" appearance="outline" class="form-field">
+        <mat-label> Select Basis</mat-label>
+        <mat-select id="code" formControlName="basisCode">
+          <mat-option *ngFor="let basis of basises" [value]="basis.code">
+            {{ basis.code }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="poForm.get('basis')?.hasError('required')">
+          Please select Basis
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+
+      <!-- basis value -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Basis Value</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="basisValue"
+          placeholder="Basis Value"
+          required
+        />
+        <mat-error *ngIf="poForm.get('basisValue')?.hasError('required')"
+          >Basis value required</mat-error
+        >
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!poForm.valid"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>
+
+<!-- style details -->
+<div style="flex-direction: row">
+  <div style="flex-direction: column">
+    <button
+      mat-flat-button
+      color="primary"
+      class="main-submit-button shadow-effects"
+    >
+      <mat-icon></mat-icon>
+      Styles
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="main-submit-button shadow-effects"
+    >
+      <mat-icon></mat-icon>
+      Color/Size Breakdown
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="main-submit-button shadow-effects"
+    >
+      <mat-icon></mat-icon>
+      Shipment/Part Shipment Details
+    </button>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+  box-shadow: 0 0 53px -30px rgba(139, 140, 143, 0.426);
+}
+
+mat-form-field {
+  display: block;
+  margin: 10px 0;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: blue;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: green($color: #5c3a3a);
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+  background-color: #fff;
+  opacity: 1 !important;
+}
+/* 
+    .mat-mdc-flat-button:hover .mat-mdc-button-persistent-ripple::before {
+      opacity: 1;
+      background-color: red;
+    }
+    
+    .mat-mdc-button-persistent-ripple
+      .mdc-button_ripple:hover
+      .mat-mdc-button-persistent-ripple::before {
+      opacity: 1;
+      background-color: red;
+    } */
+
+.mat-icon-button:hover .mat-button-focus-overlay {
+  opacity: 1 !important;
+}
+
+.main-submit-button:hover {
+  background-color: #000;
+  color: rgb(249 115 22 / 1);
+}
+
+.shadow-effects {
+  box-shadow: 0 0 33px -10px rgb(71, 114, 254, 0.3);
+}
+
+.main-submit-button {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 1.5rem;
+  border: 1px solid #000;
+}
+
+.filter {
+  background-color: #fff;
+}
+/* 
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 15px;
+    align-items: flex-start;
+  } */
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 15px;
+  align-items: flex-start;
+  font-size: small;
+}
+
+.radio-button {
+  margin: 5px;
+  font-size: small;
+}
+.radio-button {
+  margin: 5px;
+}
+
+/* t's because the .mat-mdc-dialog-content has a max-height: 65vh. 
+  You can either decide not to use the directive, or override this in your css: */
+.mat-mdc-dialog-content {
+  /* min-height: 95%; */
+  max-height: initial;
+}
+
+img {
+  display: block;
+  max-width: 100px;
+  max-height: 200px;
+  height: auto;
+  width: auto;
+  margin: auto;
+
+  border-color: rgb(71, 114, 254, 0.3);
+  border-color: #000;
+  padding: 2px;
+  /* border-color: rgb(107 114 128 / var(1)); /* #6b7280 * */
+
+  /* overflow: hidden; */
+}
+
+.imagebox {
+  width: 33.3%;
+  /* border: 3px solid #454222; */
+}
+
+.custom-modalbox > mat-dialog-container {
+  background: #ffffff;
+  border: 3px solid #c6c8d5;
+  box-shadow: 0px 4px 12px rgba(12, 24, 33, 0.15);
+  border-radius: 10px;
+  padding: 0px;
+}
+
+.Modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

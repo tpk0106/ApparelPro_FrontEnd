@@ -1,0 +1,32 @@
+<!-- class="w-full flex text-3xl bg-gray-300 text-center m-2 shadow-gray-400 border shadow-xl rounded-xl" -->
+<div class="container">
+  <div
+    class="text-xl text-green-9501 bg-[#85c1e9] text-center mb-2 shadow-gray-400 border shadow-xl rounded-xl"
+  >
+    <div class="w-full flex justify-between">
+      <mat-toolbar class="title-toolbar">
+        <h2 class="text-center">APPAREL PRO</h2>
+
+        <a
+          mat-flat-button
+          color="primary1"
+          class="main-submit-button shadow-effects"
+          [routerLink]="['/login']"
+          *ngIf="!isLoggedIn"
+          >login
+          <mat-icon>login</mat-icon>
+        </a>
+
+        <a
+          mat-flat-button
+          color="primary1"
+          class="main-submit-button shadow-effects"
+          *ngIf="isLoggedIn"
+          (click)="onLogout()"
+          >logout
+          <mat-icon>logout</mat-icon>
+        </a>
+      </mat-toolbar>
+    </div>
+  </div>
+</div>

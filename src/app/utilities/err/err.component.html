@@ -1,0 +1,23 @@
+<div
+  class="w-2/3 flex my-5"
+  style="border: 4px solid red"
+  *ngIf="formctrl.get([field])?.hasError('required')"
+  ;
+>
+  <span class="py-1 px-1 text-red-800">{{ errorMessage }}</span>
+  <i class="fa-solid fa-exclamation text-red-800 py-2.5 px-1"></i>
+  @if(formctrl.get(field) !== null){
+  <div>formctrl.get(field)?.hasError('required')</div>
+  }
+</div>
+
+<div
+  class="w-2/3 flex my-5"
+  *ngIf="formctrl.getError"
+  style="border: 4px solid blue"
+>
+  <span class="py-1 px-1 text-red-800">{{ errorMessage }}</span>
+  <i class="fa-solid fa-exclamation text-red-800 py-2.5 px-1"></i>
+</div>
+
+<!-- *ngIf="[formName]; get: [field]?.hasError('required')" -->

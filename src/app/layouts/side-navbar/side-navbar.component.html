@@ -1,0 +1,202 @@
+<div class="flex">
+  <!-- vertical menu background color -->
+  <div
+    style="height: 100%; width: 40%"
+    class="bg-dark-purple1 bg-Antique-bronze1 bg-[#996666] h-screen pt-8 w-[15%] relative duration-1000"
+    (click)="myClick($event)"
+  >
+    <!-- <i
+      *ngIf="open"
+      class="fa-solid fa-arrow-right {{
+        open && 'rotate-180'
+      }} bg-white text-dark-purple text-3xl rounded-full absolute -right-3 mt-9 border border-dark-purple cursor-pointer duration-500"
+    >
+    </i>
+    <i
+      *ngIf="!open"
+      class="fa-solid fa-arrow-left bg-white text-dark-purple text-3xl rounded-full absolute -right-3 mt-9 border border-dark-purple cursor-pointer duration-500"
+    >
+    </i> -->
+
+    <div class="inline-flex">
+      <i
+        class="fa-solid fa-location-dot bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 {{
+          open && 'rotate-[360deg]'
+        }} duration-300"
+      >
+        <h1
+          class="text-black origin-left float-right my-3 ml-2 font-medium text-sm {{
+            open && 'scale-0'
+          }} duration-300"
+        >
+          AP PRO
+        </h1>
+      </i>
+    </div>
+    <!-- <div
+      class="flex items-center rounded-md bg-ligh-white mt-6 px-4 py-2 {{
+        !open ? 'px-2.5' : 'px-4'
+      }}"
+    >
+      <i
+        class="fa-brands fa-searchengin text-white text-lg block float-left cursor-pointer focus:outline-none mr-4 {{
+          open && 'mr-2'
+        }}"
+      >
+        <input
+          type="search"
+          class="text-base bg-transparent w-2/3 text-white {{
+            open && 'hidden1'
+          }}"
+          placeholder="..."
+        />
+      </i>
+    </div> -->
+
+    <!--   menu -->
+    <ul id="parent" style="height: 650px; overflow: auto">
+      @for (menu of navData; track menu.routerLink) {
+      <li id="child" style="margin: 1px 0">
+        <a href="#" routerLink="{{ menu.routerLink }}"
+          ><span>{{ menu.label }}</span></a
+        >
+        @if(menu.subMenus !== null){
+        <i class="fa-solid fa-angle-down"></i>
+        }
+      </li>
+      <!-- <li
+        id="ruler"
+        style="
+          margin: 1px 0;
+          text-decoration: none;
+          padding-left: 5px;
+          color: #000;
+        "
+      ></li> -->
+      @if(menu.submenus !== null) {
+      <ul id="parent1" class="hidden1">
+        @for(subMenu of menu.subMenus; track subMenu.routerLink;let count =
+        $count;){
+
+        <li style="margin: 0.5px 0">
+          <a href="#" routerLink="{{ subMenu.routerLink }}"
+            ><span>{{ subMenu.label }}</span></a
+          >
+        </li>
+        <!-- <li id="ruler" style="margin: 0.5px"></li> -->
+
+        }
+      </ul>
+      } }
+    </ul>
+    <!-- {{navData.map((menu,index) => <li></li> )}} -->
+
+    <!-- end menu -->
+  </div>
+
+  <div
+    class1="p-7 text-2xl font-semibold"
+    class="w-full - mx-4"
+    style="height: 100%"
+  >
+    <div class1="w-full border-[4px] border1-gray-500">
+      <app-home></app-home>
+      <!-- <router-outlet></router-outlet> -->
+    </div>
+  </div>
+</div>
+<!-- 
+<div lass="flex flex-row w-full  m-auto mb-0  bg-gray-900 h-[80%]">
+  <div
+    class="fixed top-0 m-0 flex flex-col bg-gray-900 text-white mb-10 shadow-lg"
+  >
+    <div class="w-1/4 border-blue-400 ml-0" style="border: 3px solid red">
+      <ul>
+        @for(menu of navData; track menu.routerLink){
+        <li>
+          <a
+            class="hover:bg-yellow-300"
+            href=""
+            routerLink="{{ menu.routerLink }}"
+            routerLinkActive="active"
+            >{{ menu.label }}</a
+          >
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="w-3/4 border-blue-400 m-auto" style="border: 3px solid red">
+    <app-currency></app-currency>
+  </div>
+</div> -->
+<!-- 
+<div
+  class="flex flex-row w-full relative mt-[200px]"
+  style="border: 3px solid orange"
+>
+  <div class="w-1/4 border-blue-400 ml-0" style="border: 3px solid red">
+    <div class="container w-1/4 relative" style="border: 3px solid blue">
+      <nav
+        class="flex flex-col flex-1 items-center justify-between w-full relative"
+      >
+        <div class="w-1/4 py-5 px-5 ml-3">
+          <img [src]="LogoUrl" alt="ApparelPro logo" />
+        </div>
+
+        <div
+          class="flex-1 items-center content-center border-menu-border-gray border-[1px] w-full bg-menu-very-light-gray text-menu-black-dark text-2xl mx-[10%] rounded-[14px]"
+        >
+          @for(menu of navData; track menu.routerLink){
+          <ul class="flex flex-1 text-center items-center justify-between">
+            @if (menu.subMenus !== null) {
+            <li
+              id="dropdownmenu"
+              class="w-full h1-[150px] items-center mt1-7 hover:bg-yellow-400"
+              style="border: 7px solid #998877"
+            >
+              <div
+                style="width: 100px; margin-top: 40px; text-align: center"
+                class="hidden absolute w-[200px] mt-[80px] text-center hover:bg-yellow-300"
+              >
+                @for(submenu of menu.subMenus||null; track submenu.routerLink;
+                let index = $index; let count = $count; let first = $first; let
+                last = $last; let odd = $odd; let even = $even ) {
+                <ul
+                  id="submenu"
+                  class="hidden"
+                  style="border: 5px solid red; margin: 0"
+                >
+                  <li
+                    class="w-full p-1 border-[1px] border-menu-border-gray bg-menu-very-light-gray hover:bg-yellow-300"
+                    style1="width: 200px; border: 5px solid brown; margin: 0"
+                  >
+                    <a href="#{{ submenu.label }}" class="m-auto"
+                      >{{ count }} {{ submenu.label }}</a
+                    >
+                  </li>
+                </ul>
+                }
+              </div>
+            </li>
+            }
+            <li
+              id="menu"
+              class="cursor-pointer items-center shadow-menu-shadow text-center py-4 hover:shadow-menu-shadow-hover m-auto"
+            >
+              <a
+                class="hover:bg-yellow-300"
+                href=""
+                routerLink="{{ menu.routerLink }}"
+                routerLinkActive="active"
+                >{{ menu.label }}</a
+              >
+            </li>
+          </ul>
+          }
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="w-3/4 border-blue-400 m-auto" style="border: 3px solid red"></div>
+</div> -->

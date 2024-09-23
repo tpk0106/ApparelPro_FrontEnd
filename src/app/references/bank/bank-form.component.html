@@ -1,0 +1,176 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="bankForm">
+      <mat-divider></mat-divider>
+      <p style="margin: auto">Country</p>
+      <mat-divider></mat-divider>
+
+      <!-- <p>
+        <mat-error *ngIf="bankForm.hasError('isDuplicateBank') && !edit">
+          <strong>ERROR: </strong>country code,
+          <i>{{ bankForm.get("Bankcode")?.value }}</i
+          >, exist.
+        </mat-error>
+      </p> -->
+
+      <!-- bank name -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Bank Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Bank name"
+          required
+          (input)="onInput($event)"
+        />
+        <mat-hint align="end">{{ value().length }}/30</mat-hint>
+
+        <mat-error *ngIf="bankForm.get('name')?.hasError('required')"
+          >country name required</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('name')?.hasError('maxlength')"
+          >code maximum length is 30</mat-error
+        >
+      </mat-form-field>
+
+      <!-- bank code -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Bank Code</mat-label>
+        <input
+          matInput
+          formControlName="bankCode"
+          placeholder="Bank Code"
+          oninput="this.value=value.toUpperCase()"
+          required
+          [disabled]="this.edit"
+        />
+        <mat-error *ngIf="bankForm.get('bankCode')?.hasError('required')"
+          >code required</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('bankCode')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('bankCode')?.hasError('maxlength')"
+          >code maximum length is 6</mat-error
+        >
+      </mat-form-field>
+
+      <!-- country Flag -->
+      <!-- class="form-control img-fluid img-preview m-auto max-h-20 min-h-20 bg-white border-primary rounded-sm shadow-effects" -->
+
+      <!-- swift code -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Swift Code</mat-label>
+        <input
+          matInput
+          formControlName="swiftCode"
+          placeholder="Swift Code"
+          required
+        />
+        <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('required')"
+          >Swift code required</mat-error
+        >
+        <!-- <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('maxlength')"
+          >code maximum length is 6</mat-error
+        > -->
+      </mat-form-field>
+
+      <!-- Loan Limit -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Loan Limit</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="loanLimit"
+          placeholder="Loan Limit"
+          required
+        />
+        <!-- <mat-error *ngIf="bankForm.get('loanLimit')?.hasError('required')"
+          >code required</mat-error
+        > -->
+        <!-- <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('maxlength')"
+          >code maximum length is 6</mat-error
+        > -->
+      </mat-form-field>
+
+      <!--  -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Swift Code</mat-label>
+        <input
+          matInput
+          formControlName="swiftCode"
+          placeholder="Swift Code"
+          oninput="this.value=value.toUpperCase()"
+          required
+        />
+        <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('required')"
+          >code required</mat-error
+        >
+        <!-- <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="bankForm.get('swiftCode')?.hasError('maxlength')"
+          >code maximum length is 6</mat-error
+        > -->
+      </mat-form-field>
+
+      <!-- currency code -->
+      <mat-form-field
+        *ngIf="currencies"
+        appearance="outline"
+        class="form-field"
+      >
+        <mat-label> Select Currency</mat-label>
+        <mat-select id="currencyCode" formControlName="currencyCode">
+          <mat-option
+            *ngFor="let currency of currencies"
+            [value]="currency.code"
+          >
+            {{ currency.code }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="bankForm.get('currencyCode')?.hasError('required')">
+          Please select Currency
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!bankForm.valid"
+          (click)="submitEntry(bankForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

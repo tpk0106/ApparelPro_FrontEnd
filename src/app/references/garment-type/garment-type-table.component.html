@@ -1,0 +1,83 @@
+<div class="container mt-3 mx-20" style="width: 35%; margin: auto">
+  <div class="flex flex-col justify-between">
+    <mat-form-field
+      appearance="outline"
+      class="form-field"
+      [hidden]="!garmentTypes"
+      class="filter"
+      style="font-size: x-small"
+    >
+      <mat-radio-group
+        aria-labelledby="radio-group-label"
+        class="radio-group"
+        formControlName="code"
+      >
+        <div>
+          <label id="radio-group-label">Select column name to filter : </label>
+
+          <mat-radio-button
+            (change)="radioChange($event)"
+            class="radio-button"
+            value="typeName"
+          >
+            <mat-label class="text-sm" style="font-size: x-small"
+              >Garment type</mat-label
+            >
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <div style="display: flex">
+        <mat-icon>search</mat-icon>
+        <input
+          class="filter"
+          matInput
+          #filter
+          formControlName="search"
+          [placeholder]="placeholder"
+          (keyup)="filterChanged.next(filter.value)"
+        />
+      </div>
+    </mat-form-field>
+  </div>
+  <div>
+    <table
+      mat-table
+      [dataSource]="entries"
+      class="mat-elevation-z8"
+      matSort
+      [matSortActive]="defaultSortColumn"
+      [matSortDirection]="defaultSortOrder"
+      (matSortChange)="loadEntries(filterQuery)"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let garmentType">{{ garmentType.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="typeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let garmentType">
+          <button
+            mat-flat-button
+            class="linkButton"
+            (click)="editEntry(garmentType)"
+          >
+            {{ garmentType.typeName }}
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    </table>
+
+    <div style="height: 20px"></div>
+    <mat-paginator
+      (page)="getEntries($event)"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+</div>

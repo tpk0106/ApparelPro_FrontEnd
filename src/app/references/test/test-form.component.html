@@ -1,0 +1,128 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="countryForm">
+      <p>
+        <mat-error *ngIf="countryForm.hasError('isDuplicateCountry') && !edit">
+          <strong>ERROR: </strong>country code,
+          <i>{{ countryForm.get("code")?.value }}</i
+          >, exist.
+        </mat-error>
+      </p>
+
+      <!-- country name -->
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>NameXXXXXXXX</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="country name"
+          required
+        />
+        <mat-error *ngIf="countryForm.get('name')?.hasError('required')"
+          >country name required</mat-error
+        >
+        <mat-error *ngIf="countryForm.get('name')?.hasError('maxlength')"
+          >code maximum length is 15</mat-error
+        >
+      </mat-form-field>
+
+      <!-- country code -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Code</mat-label>
+        <input
+          matInput
+          formControlName="code"
+          placeholder="country code"
+          required
+          [disabled]="this.edit"
+        />
+        <mat-error *ngIf="countryForm.get('code')?.hasError('required')"
+          >code required</mat-error
+        >
+        <mat-error *ngIf="countryForm.get('code')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        >
+        <mat-error *ngIf="countryForm.get('code')?.hasError('maxlength')"
+          >code maximum length is 3</mat-error
+        >
+      </mat-form-field>
+
+      <!-- country Flag -->
+      <!-- class="form-control img-fluid img-preview m-auto max-h-20 min-h-20 bg-white border-primary rounded-sm shadow-effects" -->
+
+      <div class="my1-3" style1="border: 4px solid red">
+        <div class="flex flex-row w-full">
+          <div class="w-4/12 imagebox" style1="border: 4px solid yellow"></div>
+          <div
+            class="imagebox form-group flex flex-row w-4/12 my1-3 justify-around1 m1-auto"
+            style1="border: 4px solid green"
+          >
+            <img
+              [src]="imgSrc"
+              class="rounded-sm border-gray-500 img-diamension shadow-effects"
+            />
+          </div>
+          <div class="w-4/12 imagebox" style1="border: 4px solid yellow"></div>
+        </div>
+
+        <div
+          class="flex sm:flex-col w-full my-2 h-8"
+          style1="border: 4px solid orange"
+        >
+          <input
+            type="file"
+            accept="Image/*"
+            (change)="updateImage($event)"
+            class="form-control w1-2 flex h-auto m-auto border-[1px] border-primary rounded-sm shadow-effects"
+            formControlName="flag"
+            placeholder="Flag"
+            [class.text-error]="
+              countryForm.get('flag')?.errors &&
+              countryForm.get('flag')?.touched
+            "
+          />
+        </div>
+        <div
+          *ngIf="
+            countryForm?.get('flag')?.hasError('required') &&
+            countryForm.get('flag')?.touched
+          "
+          class1="flex sm:flex-col w-full text-error"
+          [class.text-error]="
+            countryForm.get('flag')?.errors && countryForm.get('flag')?.touched
+          "
+        >
+          country flag required
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!countryForm.valid"
+          (click)="submitEntry(countryForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

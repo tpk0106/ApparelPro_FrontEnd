@@ -1,0 +1,244 @@
+<div class="container">
+  <h4
+    class="text-xl text-green-9501 bg-[#85c1e9] text-center mb-2 shadow-gray-400 border shadow-xl rounded-xl"
+  >
+    Currency Exchange Reference
+  </h4>
+</div>
+
+<div class="container">
+  <div class="flex flex-row justify-around mt-6">
+    <div class="w-1/5"></div>
+    <div class="w-3/5 px-5 py-5 shadow-gray-400 shadow-xl rounded-xl">
+      <div class="flex flex-col content-center">
+        <!-- <div class="text-center bg-[#996666] text1-black">
+          <h2 class="text-primary bg-[#996666]">Currency Exchange</h2>
+        </div> -->
+        <h5 class="label">Currency Exchange</h5>
+        <div class="w-full">
+          <form [formGroup]="currencyExchangeForm">
+            <mat-form-field
+              *ngIf="currencies"
+              appearance="outline"
+              class="form-field"
+            >
+              <mat-label class="label"> Select base Currency</mat-label>
+              <mat-select id="baseCurrency" formControlName="baseCurrency">
+                <mat-option
+                  *ngFor="let currency of currencies"
+                  [value]="currency.code"
+                >
+                  {{ currency.name }}
+                </mat-option>
+              </mat-select>
+
+              <mat-hint class="label">click the drop down list</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label class="label">currency rate</mat-label>
+              <input
+                matInput
+                formControlName="rate"
+                placeholder="currency rate"
+                required
+              />
+              <mat-error
+                *ngIf="currencyExchangeForm.get('rate')?.hasError('required')"
+                >currency rate required</mat-error
+              >
+            </mat-form-field>
+
+            <mat-form-field
+              *ngIf="currencies"
+              appearance="outline"
+              class="form-field"
+            >
+              <mat-label class="label">select quote Currency</mat-label>
+              <mat-select id="quoteCurrency" formControlName="quoteCurrency">
+                <mat-option
+                  *ngFor="let currency of currencies"
+                  [value]="currency.code"
+                >
+                  {{ currency.name }}
+                </mat-option>
+              </mat-select>
+
+              <mat-hint class="label">click drop down list</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <input
+                matInput
+                [matDatepicker]="exchangeDate"
+                [value]="exchangeDate"
+              />
+              <mat-hint class="label">DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="exchangeDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #exchangeDate></mat-datepicker>
+            </mat-form-field>
+
+            <div class="flex w-full content-center justify-between mt-5">
+              <div class="w-3/12"></div>
+              <div class="w-full flex flex-row justify-between">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  class="main-submit-button shadow-effects"
+                  (click)="onEdit(currencyExchange.baseCurrency)"
+                  [disabled]="!currencyExchangeForm.valid"
+                >
+                  <mat-icon>save</mat-icon>
+                  {{ caption }}
+                </button>
+                <button
+                  mat-flat-button
+                  color="primary"
+                  class="main-submit-button shadow-effects"
+                  (click)="onEdit(currencyExchange.baseCurrency)"
+                >
+                  <mat-icon>cancel</mat-icon>
+                  Cancel
+                </button>
+              </div>
+              <div class="w-3/12"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="w-1/5"></div>
+  </div>
+</div>
+
+<!-- angular material table -->
+<div class="container mt-3">
+  <div class="flex flex-row justify-between">
+    <!-- <div class="w-1/6"></div> -->
+    <div class="w-full flex flex-col">
+      <div>
+        <mat-form-field
+          appearance="outline"
+          class="form-field"
+          [hidden]="!currencyExchanges"
+          class="mat-form-field1 filter"
+          style="font-size: x-small"
+        >
+          <mat-radio-group
+            aria-labelledby="radio-group-label"
+            class="radio-group"
+            formControlName="baseCurr"
+          >
+            <div>
+              <label id="radio-group-label"
+                >Select column name to filter :
+              </label>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                value="baseCurrency"
+                class="radio-button"
+              >
+                Base Currency
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="quoteCurrency"
+              >
+                Quote Currency
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="rate"
+              >
+                Rate
+              </mat-radio-button>
+              <mat-radio-button
+                (change)="radioChange($event)"
+                class="radio-button"
+                value="exchangeDate"
+              >
+                Exchange Date
+              </mat-radio-button>
+            </div>
+          </mat-radio-group>
+          <div style="display: flex; margin-left: 10px">
+            <mat-icon>search</mat-icon>
+            <input
+              class="filter"
+              matInput
+              #filter
+              [placeholder]="placeholder"
+              (keyup)="filterChanged.next(filter.value)"
+            />
+          </div>
+        </mat-form-field>
+      </div>
+      <table
+        mat-table
+        [dataSource]="currencyExchanges"
+        class="mat-elevation-z8"
+        matSort
+        [matSortActive]="defaultSortColumn"
+        [matSortDirection]="defaultSortOrder"
+        (matSortChange)="loadCurrencyExchanges(this.filterQuery!)"
+      >
+        <ng-container matColumnDef="baseCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Base Currency
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.baseCurrency }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.rate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quoteCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Quote Currency
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.quoteCurrency }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="exchangeDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Exchange Date
+          </th>
+          <td mat-cell *matCellDef="let currencyExchange">
+            {{ currencyExchange.exchangeDate | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+      </table>
+      <div style="height: 20px"></div>
+      <mat-paginator
+        (page)="getCurrencyExchanges($event)"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+    </div>
+    <!-- <div class="w-1/6"></div> -->
+  </div>
+</div>
+
+<!-- https://www.geeksforgeeks.org/what-is-the-use-of-bootstrap-datepicker-in-angular -->
+
+<!-- https://stackoverflow.com/questions/71566807/angular-ngbdatepicker-display-date-format -->
+<!-- https://www.npmjs.com/package/primeng -->
+<!-- https://primeng.org/ -->

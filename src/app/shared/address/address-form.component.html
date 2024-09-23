@@ -1,0 +1,162 @@
+<div class="shadow-effects1 shadow-black">
+  <mat-dialog-content class="">
+    <form [formGroup]="addressForm">
+      <!-- <p>
+        <mat-error *ngIf="addressForm.hasError('isDuplicateUnit') && !edit">
+          <strong>ERROR: </strong>unit code,
+          <i>{{ addressForm.get("code")?.value }}</i
+          >, exist.
+        </mat-error>
+      </p> -->
+
+      <div>
+        <!-- address type -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Address Type</mat-label>
+          <input
+            matInput
+            formControlName="addressType"
+            placeholder="Address Type"
+          />
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+              >code required</mat-error
+            > -->
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
+              >code minimum length is 2</mat-error
+            > -->
+          <mat-error
+            *ngIf="addressForm.get('addressType')?.hasError('maxlength')"
+            >code maximum length is 200</mat-error
+          >
+        </mat-form-field>
+
+        <!--  street Address -->
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Street Address</mat-label>
+          <input
+            matInput
+            formControlName="streetAddress"
+            placeholder="Street Address"
+            required
+          />
+          <!-- <mat-error
+          *ngIf="addressForm.get('streetAddresss')?.hasError('required')"
+          >unit name required</mat-error
+        > -->
+          <mat-error
+            *ngIf="addressForm.get('streetAddresss')?.hasError('maxlength')"
+            >code maximum length is 20</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- City -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" placeholder="City" />
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+              >code required</mat-error
+            > -->
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
+              >code minimum length is 2</mat-error
+            > -->
+          <mat-error *ngIf="addressForm.get('city')?.hasError('maxlength')"
+            >code maximum length is 200</mat-error
+          >
+        </mat-form-field>
+
+        <!-- postcode -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Post Code</mat-label>
+          <input matInput formControlName="postCode" placeholder="Post code" />
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+          >code required</mat-error
+        > -->
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
+          >code minimum length is 2</mat-error
+        > -->
+          <mat-error *ngIf="addressForm.get('postCode')?.hasError('maxlength')"
+            >code maximum length is 5</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- State -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>State</mat-label>
+          <input matInput formControlName="state" placeholder="Sate" />
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+              >code required</mat-error
+            > -->
+          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
+              >code minimum length is 2</mat-error
+            > -->
+          <mat-error *ngIf="addressForm.get('state')?.hasError('maxlength')"
+            >code maximum length is 5</mat-error
+          >
+        </mat-form-field>
+
+        <!-- country -->
+        <mat-form-field
+          *ngIf="countries"
+          appearance="outline"
+          class="form-field"
+        >
+          <mat-label> Select a Country</mat-label>
+          <mat-select id="countryCode" formControlName="countryCode">
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.code"
+            >
+              <div class="flex flex-row w-full">
+                <div class="countryname-wrapper">
+                  {{ country.name }}
+                </div>
+                <div class="image-wrapper">
+                  <img
+                    src="{{ imageDataUrl(country.flag) }}"
+                    alt="flag of {{ country.name }}"
+                  />
+                </div>
+              </div>
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="addressForm.get('countryCode')?.hasError('required')"
+          >
+            Please select Country
+          </mat-error>
+          <mat-hint>click the drop down list</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex w-full content-center justify-between mt-3">
+      <div class="w-1/3"></div>
+      <div class="w-full flex flex-row justify-center">
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          [disabled]="!addressForm.valid"
+          (click)="submitEntry(addressForm.value)"
+        >
+          <mat-icon>save</mat-icon>
+          {{ caption }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="main-submit-button shadow-effects"
+          (click)="closeDialog()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+      <div class="w-1/3"></div>
+    </div>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,50 @@
+<!-- <mat-sidenav-container autosize>
+  <mat-sidenav #sidenav fixedInViewport="true" mode="side" opened>
+    
+    <app-testnavbar></app-testnavbar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content-container">
+      <button type="button" mat-button (click)="sidenav.toggle()">
+        Toggle sidenav
+      </button>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+ -->
+
+<!-- <app-testnavbar></app-testnavbar> -->
+<!-- 
+<ul style="list-style-type: none">
+  <li><mat-icon>apps</mat-icon></li>
+  <li><mat-icon>location_on</mat-icon></li>
+  <li><mat-icon>business_center</mat-icon></li>
+  <li><mat-icon></mat-icon></li>
+</ul> -->
+<section [class.sidenav]="isExpanded">
+  <div class="toggle">
+    <mat-icon (click)="toggleMenu.emit(!isExpanded)">
+      {{ isExpanded ? "apps" : "location_on" }}
+    </mat-icon>
+  </div>
+  <mat-list class="nav" *ngFor="let route of this.routeLinks">
+    <a
+      mat-list-item
+      routerLinkActive="active-link"
+      class="hover"
+      routerLink="{{ route.link }}"
+    >
+      <mat-icon
+        mat-list-icon
+        [matTooltip]="!isExpanded ? route.name : null"
+        matTooltipPosition="right"
+      >
+        {{ route.icon }}</mat-icon
+      >
+      <p matLine *ngIf="isExpanded">{{ route.name }}</p>
+    </a>
+  </mat-list>
+
+  <app-testnavbar></app-testnavbar>
+</section>

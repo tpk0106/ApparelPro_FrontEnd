@@ -1,0 +1,247 @@
+  <div
+              class="form-group my-3 p1-1 w1-full"
+              style1="border: 4px solid blue"
+            >
+              <div class="form-group my-3" style1="border: 4px solid red">
+                <select
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="baseCurrency"
+                  id="bc"
+                  pInputText
+                  name="baseCurrency"
+                  id="baseCurrency"
+                  [ngClass]="{
+                    'is-invalid':
+                      currencyExchangeForm.get('baseCurrency')!.touched &&
+                      currencyExchangeForm.get('baseCurrency')!.invalid
+                  }"
+                >
+                  <option value="" disabled>
+                    <label for="bc">Please select base currency</label>
+                  </option>
+                  @for(currency of currencies; track currency.code){
+                  <option value="{{ currency.code }}">
+                    {{ currency.name }}
+                  </option>
+                  }
+                </select>
+
+                <div
+                  *ngIf="
+                    currencyExchangeForm
+                      ?.get('baseCurrency')
+                      ?.hasError('required')
+                  "
+                >
+                  <div class="text-error">base currency required</div>
+                </div>
+              </div>
+
+              <p-dropdown
+                [options]="currencies"
+                placeholder="Select a City"
+                [editable]="true"
+                optionLabel="name"
+              ></p-dropdown>
+
+              <span class="p-float-label">
+                <p-dropdown
+                  [options]="currencies"
+                  placeholder="Select a Base Currency"
+                  optionLabel="name"
+                  inputId="float-label"
+                ></p-dropdown>
+                <label for="float-label">Select a Base Currency</label>
+              </span>
+
+              <!-- <span class="pi pi-user"></span> -->
+              <!-- rate -->
+              <div class="form-group my-3" style1="border: 4px solid red">
+                <p-floatLabel>
+                  <input
+                    type="text"
+                    pInputText
+                    id="rate"
+                    class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                    formControlName="rate"
+                    placeholder="currency rate"
+                    [class.text-error]="
+                      currencyExchangeForm.get('rate')?.errors &&
+                      currencyExchangeForm.get('rate')?.touched
+                    "
+                    [ngClass]="{
+                      'is-invalid':
+                        currencyExchangeForm.get('rate')!.touched &&
+                        currencyExchangeForm.get('rate')!.invalid
+                    }"
+                  />
+                  <label for="rate">Currency Rate</label>
+                </p-floatLabel>
+                <div
+                  *ngIf="
+                    currencyExchangeForm?.get('rate')?.hasError('required')
+                  "
+                  class="text-error mt-2"
+                >
+                  <div>rate required</div>
+                </div>
+              </div>
+
+              <!-- quote currency -->
+              <div class="form-group my-3" style1="border: 4px solid red">
+                <select
+                  class="form-control w-full border-[1px] border-primary rounded-sm shadow-effects"
+                  formControlName="quoteCurrency"
+                  name="quoteCurrency"
+                  id="quoteCurrency"
+                  [ngClass]="{
+                    'is-invalid':
+                      currencyExchangeForm.get('quoteCurrency')!.touched &&
+                      currencyExchangeForm.get('quoteCurrency')!.invalid
+                  }"
+                >
+                  <option value="" disabled>
+                    Please select Quote Currency
+                    <img
+                      src="https://www.worldometers.info/img/flags/small/tn_nz-flag.gif"
+                      alt=""
+                    />
+                  </option>
+                  @for(currency of currencies; track currency.code){
+                  <option value="{{ currency.code }}">
+                    {{ currency.name }}
+                  </option>
+                  }
+                </select>
+                <div
+                  class=""
+                  *ngIf="
+                    currencyExchangeForm
+                      ?.get('quoteCurrency')
+                      ?.hasError('required')
+                  "
+                  [ngClass]="{
+                    'is-invalid':
+                      currencyExchangeForm.get('rate')!.touched &&
+                      currencyExchangeForm.get('rate')!.invalid
+                  }"
+                >
+                  <div class="text-error">quote currency required</div>
+                </div>
+              </div>
+
+              <!-- exchange date -->
+
+              <!-- https://www.geeksforgeeks.org/what-is-the-use-of-bootstrap-datepicker-in-angular -->
+
+              <!-- https://stackoverflow.com/questions/71566807/angular-ngbdatepicker-display-date-format -->
+              <!-- https://www.npmjs.com/package/primeng -->
+              <!-- https://primeng.org/ -->
+
+              <div
+                class="form-group w-full1 my-3"
+                style1="border: 3px solid red"
+              >
+                <p-calendar
+                  styleClass="cal"
+                  [iconDisplay]="'input'"
+                  [showIcon]="true"
+                  formControlName="exchangeDate"
+                  dateFormat="dd/mm/yy"
+                >
+                  <div
+                    class=""
+                    *ngIf="
+                      currencyExchangeForm
+                        ?.get('exchangeDate')
+                        ?.hasError('required')
+                    "
+                    [ngClass]="{
+                      'is-invalid':
+                        currencyExchangeForm.get('exchangeDate')!.touched &&
+                        currencyExchangeForm.get('exchangeDate')!.invalid
+                    }"
+                  >
+                    <div class="text-error">Exchange date required</div>
+                  </div>
+                </p-calendar>
+                <div
+                  class=""
+                  *ngIf="
+                    currencyExchangeForm
+                      ?.get('exchangeDate')
+                      ?.hasError('required')
+                  "
+                  [ngClass]="{
+                    'is-invalid':
+                      currencyExchangeForm.get('exchangeDate')!.touched &&
+                      currencyExchangeForm.get('exchangeDate')!.invalid
+                  }"
+                >
+                  <div class="text-error">Exchange date required</div>
+                </div>
+              </div>
+
+              <!-- <div class="form-group w-full my-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="exchangeDate"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  formControlName="exchangeDate"
+                  [(ngModel)]="exchangeDate"
+                  placeholder="dd-mm-yyyy"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-info"
+                    (click)="d.toggle()"
+                    type="button"
+                  >
+                    Toggler
+                  </button>
+                </div>
+                <div class="invalid-feedback">Exchange Date required</div>
+                <pre>Modelxxxx: {{ exchangeDate | json }}</pre>
+                
+              </div> -->
+
+              <div class="form-group my-3">
+                <div class="flex w-full content-center justify-between mt-5">
+                  <div class="w-3/12" style1="border: 3px solid red"></div>
+                  <div class="w-6/12" style1="border: 3px solid red">
+                    <app-button
+                      style1="border: 2px solid red"
+                      [caption]="caption"
+                      [width]="width"
+                      class="mx-1 px-2"
+                      (thisButtonClick)="
+                        addCurrencyExchange(currencyExchangeForm.value)
+                      "
+                      countryForm.value
+                    />
+                    <app-button
+                      style1="border: 2px solid yellow"
+                      caption="Cancel"
+                      [width]="width"
+                      class=" w-[{{ width }}px] px-2"
+                      (thisButtonClick)="onCancel($event)"
+                      countryForm.value
+                    />
+                  </div>
+                  <!-- <button
+                    pButton
+                    label="submit"
+                    class="p-button-rounded"
+                  ></button> -->
+                  <p-button
+                    label="Submit"
+                    styleClass="mybutton"
+                    rounded="true"
+                    class="p-button-rounded"
+                  ></p-button>
+                  <div class="w-3/12" style1="border: 3px solid red"></div>
+                </div>
+              </div>
+            </div>

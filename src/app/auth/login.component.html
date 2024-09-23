@@ -1,0 +1,88 @@
+<div
+  class="login"
+  style="border: 2 px solid red; width: 60%; margin: auto; margin-top: 30px"
+>
+  <h4>Login</h4>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <p>
+      <!-- <mat-error *ngIf="loginResult && !loginResult.success">
+        <strong>ERROR</strong>: {{ loginResult.message }}
+      </mat-error> -->
+    </p>
+
+    <!-- <mat-card appearance="outlined">
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label class="label"
+            >Emailxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:</mat-label
+          >
+          <input
+            style="font-size: 12px"
+            matInput
+            formControlName="email"
+            required
+            placeholder="your email here"
+          />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card> -->
+
+    <!-- Name -->
+    <mat-form-field appearance="outline">
+      <mat-label class="label">Email:</mat-label>
+      <input
+        style="font-size: 12px"
+        matInput
+        formControlName="email"
+        required
+        placeholder="your email here"
+      />
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+        email required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label class="label">Password:</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        required
+        placeholder="input Password here"
+      />
+      <button mat-icon-button matSuffix (click)="('hide = !hide')">
+        <!-- <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon> -->
+      </button>
+
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        password required
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <div style="display: flex; flex-direction: row">
+        <button
+          mat-flat-button
+          color="primary1"
+          class="main-submit-button shadow-effects"
+          type="submit"
+        >
+          <mat-icon>check_circle</mat-icon>
+          Login
+        </button>
+        <span style="margin: 0 10px"></span>
+        <button
+          mat-flat-button
+          color="primary1"
+          class="main-submit-button shadow-effects"
+          [routerLink]="['/']"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

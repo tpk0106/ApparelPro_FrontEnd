@@ -1,0 +1,129 @@
+<div class="container w-full">
+  <app-header></app-header>
+
+  <!-- <app-side-navbar></app-side-navbar> -->
+  <!-- <div class="app-body">
+    <app-navbar> </app-navbar>
+  </div> -->
+  <!--   
+  <div class="app-body">
+    <app-mat-sidenav></app-mat-sidenav>
+  </div> -->
+  <!-- 
+  <div class="app-body">
+    <app-side-nav
+      (toggleMenu)="toggleMenu()"
+      [isExpanded]="isExpanded"
+    ></app-side-nav>
+  </div> -->
+
+  <!-- <mat-sidenav-container autosize>
+    <mat-sidenav
+      #sidenav
+      fixedInViewport="true"
+      mode="side"
+      opened="{{ isExpanded }}"
+    >
+      <app-side-nav
+        (toggleMenu)="toggleMenu()"
+        [isExpanded]="isExpanded"
+      ></app-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+  <!-- working with side move panel -->
+
+  <div class="app-body">
+    <mat-sidenav-container autosize>
+      <mat-sidenav
+        #sidenav
+        fixedInViewport="true"
+        mode="side"
+        opened="{{ true }}"
+      >
+        <app-side-nav
+          (toggleMenu)="toggleMenu()"
+          [isExpanded]="isExpanded"
+        ></app-side-nav>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="content-container">
+          <router-outlet></router-outlet>
+          xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+
+  <!-- end working with side move panel -->
+
+  <!-- ************************************* WORKING NEED FIX-->
+  <!-- <mat-drawer-container class="example-container" style="height: 100vh">
+    <mat-drawer #drawer mode="over" style="height: 100vh; width: 20vw">
+      <app-testnavbar></app-testnavbar>
+    </mat-drawer>
+    <mat-drawer-content
+      style="height: 100vh; width: 80vw; border: 2 px solid Yellow"
+    >
+      <div style="border: 3px solid red; clear: both">
+        <div style="border: 3px solid green; width: 10px">
+          <button
+            mat-raised-button
+            (click)="drawer.toggle()"
+            style="width: 5px; height: 10vh"
+          >
+            <mat-icon>arrow_right_alt</mat-icon>
+            Toggle
+          </button>
+        </div>
+        <div><app-home></app-home></div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container> -->
+  <!-- ***************************** -->
+
+  <!-- <div class="app-body">
+    <mat-drawer-container class="example-container" style="height: 40vh">
+      <mat-drawer #drawer mode="over" style="height: 30vh; width: 20vw">
+        <app-navbar> </app-navbar>
+      </mat-drawer>
+      <mat-drawer-content style="height: 100vh; width: 100vw">
+        <button mat-raised-button (click)="drawer.toggle()">Toggle</button>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div> -->
+
+  <!-- <mat-sidenav-container class="example-container">
+    <mat-sidenav
+      mode="side"
+      opened
+      #sidenav
+      (click)="sidenav.toggle()"
+      style="height: 30vh; width: 30vw"
+    >
+      
+      ></mat-sidenav
+    >
+    <mat-sidenav-content class="xx" style="height: 100vh; width: 100vw">
+      <div>
+        <button (click)="sidenav.toggle()" style="width: 5px; height: 100%">
+          &rarr;
+        </button>
+      </div>
+
+      <div style="margin-left: 25px">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis iure
+        aspernatur praesentium sapiente, similique quae molestiae beatae sed
+        amet aut, aperiam odio veritatis minima! Perspiciatis quidem voluptate
+        quas expedita impedit.
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+  <app-footer></app-footer>
+</div>

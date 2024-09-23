@@ -1,0 +1,170 @@
+<!-- angular material table -->
+<div class="container mt1-3 bg-transparent" style="margin: 0">
+  <div class="flex flex-row justify-between" style="margin: auto">
+    <div class="m-auto">
+      <div style1="border: 2px solid red">
+        <div class="w-full flex flex-col">
+          <mat-form-field
+            appearance="outline"
+            class="form-field"
+            [hidden]="!pos"
+            class="mat-form-field1 filter"
+          >
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              formControlName="po"
+            >
+              <div>
+                <label id="radio-group-label"
+                  >Select column name to filter :
+                </label>
+                <mat-radio-button
+                  (change)="radioChange($event)"
+                  value="order"
+                  class="radio-button shadow-effects"
+                >
+                  Order
+                </mat-radio-button>
+                <mat-radio-button
+                  (change)="radioChange($event)"
+                  class="radio-button"
+                  value="orderDate"
+                >
+                  Order Date
+                </mat-radio-button>
+
+                <mat-radio-button
+                  (change)="radioChange($event)"
+                  class="radio-button"
+                  value="countryCode"
+                >
+                  countryCode
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+
+            <input
+              class="filter"
+              matInput
+              #filter
+              [placeholder]="placeholder"
+              (keyup)="filterChanged.next(filter.value)"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <table
+          mat-table
+          [dataSource]="entries"
+          class="mat-elevation-z8"
+          matSort
+          [matSortActive]="defaultSortColumn"
+          [matSortDirection]="defaultSortOrder"
+          (matSortChange)="loadEntries(this.filterQuery!)"
+        >
+          <ng-container matColumnDef="buyer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Buyer</th>
+            <td mat-cell *matCellDef="let po">{{ po.buyer }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="order">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order</th>
+            <td mat-cell *matCellDef="let po">
+              <button
+                mat-flat-button
+                class="linkButton"
+                (click)="editEntry(po)"
+              >
+                {{ po.order }}
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="orderDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Order Date
+            </th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.orderDate | date : "dd/MM/yyyy" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="garmentTypeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Description
+            </th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.garmentTypeName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="countryCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Quota Country
+            </th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.countryCode }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.unitCode }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalQuantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Qty</th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.totalQuantity }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="currencyCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.currencyCode }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="season">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Season</th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.season }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="basisCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Basis</th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.basisCode }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="basisValue">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Basis Value
+            </th>
+            <td mat-cell *matCellDef="let po">
+              {{ po.basisValue | number : "1.2" }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+        </table>
+      </div>
+      <div style="height: 20px"></div>
+      <mat-paginator
+        (page)="getEntries($event)"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
