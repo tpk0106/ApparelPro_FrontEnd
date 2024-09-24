@@ -40,13 +40,13 @@
             placeholder="Street Address"
             required
           />
-          <!-- <mat-error
-          *ngIf="addressForm.get('streetAddresss')?.hasError('required')"
-          >unit name required</mat-error
-        > -->
+          <mat-error
+            *ngIf="addressForm.get('streetAddresss')?.hasError('required')"
+            >Address required</mat-error
+          >
           <mat-error
             *ngIf="addressForm.get('streetAddresss')?.hasError('maxlength')"
-            >code maximum length is 20</mat-error
+            >Street address maximum length is 300</mat-error
           >
         </mat-form-field>
       </div>
@@ -55,14 +55,12 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>City</mat-label>
           <input matInput formControlName="city" placeholder="City" />
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
-              >code required</mat-error
-            > -->
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
-              >code minimum length is 2</mat-error
-            > -->
+          <mat-error *ngIf="addressForm.get('city')?.hasError('required')"
+            >city required</mat-error
+          >
+
           <mat-error *ngIf="addressForm.get('city')?.hasError('maxlength')"
-            >code maximum length is 200</mat-error
+            >city maximum length is 200</mat-error
           >
         </mat-form-field>
 
@@ -70,28 +68,62 @@
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Post Code</mat-label>
           <input matInput formControlName="postCode" placeholder="Post code" />
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
-          >code required</mat-error
-        > -->
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
-          >code minimum length is 2</mat-error
-        > -->
+          <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+            >Post Code required</mat-error
+          >
+
           <mat-error *ngIf="addressForm.get('postCode')?.hasError('maxlength')"
             >code maximum length is 5</mat-error
           >
         </mat-form-field>
+
+        <!-- default -->
       </div>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Active Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-field">
+            <mat-label
+              ><small
+                >You can set active only for one address.</small
+              ></mat-label
+            >
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              formControlName="default"
+            >
+              <mat-radio-button
+                [value]="true"
+                class="radio-button shadow-effects"
+                (change)="radioChange($event)"
+              >
+                Yes
+              </mat-radio-button>
+              <mat-radio-button
+                class="radio-button"
+                [value]="false"
+                (change)="radioChange($event)"
+              >
+                No
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
       <div>
         <!-- State -->
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>State</mat-label>
           <input matInput formControlName="state" placeholder="Sate" />
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
-              >code required</mat-error
-            > -->
-          <!-- <mat-error *ngIf="addressForm.get('code')?.hasError('minlength')"
-              >code minimum length is 2</mat-error
-            > -->
+          <mat-error *ngIf="addressForm.get('code')?.hasError('required')"
+            >State required</mat-error
+          >
+
           <mat-error *ngIf="addressForm.get('state')?.hasError('maxlength')"
             >code maximum length is 5</mat-error
           >
@@ -160,3 +192,71 @@
     </div>
   </mat-dialog-actions>
 </div>
+
+<!-- 
+<form [formGroup]="addressForm" novalidate>
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input matInput placeholder="Company" formControlName="company" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First name"
+              formControlName="firstName"
+            />
+            <mat-error
+              *ngIf="addressForm.controls['firstName'].hasError('required')"
+            >
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last name"
+              formControlName="lastName"
+            />
+            <mat-error
+              *ngIf="addressForm.controls['lastName'].hasError('required')"
+            >
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <textarea
+              matInput
+              placeholder="Address"
+              formControlName="address"
+            ></textarea>
+            <mat-error
+              *ngIf="addressForm.controls['address'].hasError('required')"
+            >
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form> -->

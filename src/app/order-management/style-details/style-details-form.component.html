@@ -77,6 +77,8 @@
           type="number"
           required
         />
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
         <mat-error
           *ngIf="styleDetailsForm.get('unitPrice')?.hasError('required')"
           >Unit Price required. only numeric allowed</mat-error

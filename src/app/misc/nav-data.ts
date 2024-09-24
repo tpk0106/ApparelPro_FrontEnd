@@ -44,25 +44,20 @@ export const navbarData = [
         icon: 'table',
         label: 'Address',
       },
-      {
-        routerLink: 'test-form',
-        icon: 'table',
-        label: 'TEST FORM',
-      },
     ],
     tag: 'general',
   },
   {
-    routerLink: 'ordermanagement1',
+    routerLink: 'ordermanagementref',
     icon: '',
-    label: 'Order Management1',
+    label: 'Order Mgt Ref',
     subMenus: [
       {
         routerLink: 'buyer-table',
         icon: 'build',
-        label: 'Buyer/Consignee/Notify ',
+        label: 'Buyer',
       },
-      { routerLink: 'suppref', icon: 'build', label: 'Supplier Reference' },
+      { routerLink: 'suppref', icon: 'build', label: 'Supplier' },
       {
         routerLink: 'currencyconversion',
         icon: 'attach_money',
@@ -89,7 +84,7 @@ export const navbarData = [
         label: 'Style Details',
       },
     ],
-    tag: 'ordermanagement1',
+    tag: 'ordermanagementref',
   },
 
   {

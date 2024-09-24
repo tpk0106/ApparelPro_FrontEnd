@@ -71,7 +71,6 @@ export class BuyerTableComponent extends basetable<Buyer> {
     'buyerCode',
     'status',
     'addressId',
-
     'telephoneNos',
     'mobileNos',
     'fax',
@@ -103,8 +102,8 @@ export class BuyerTableComponent extends basetable<Buyer> {
     // styleDetailsDialogConfig.panelClass = ['shadow-effects', 'dialog-color'];
     // styleDetailsDialogConfig.data = { model: style };
 
-    this.baseTableDialogConfig.height = '600px';
-    this.baseTableDialogConfig.width = '300px';
+    this.baseTableDialogConfig.height = '840px';
+    this.baseTableDialogConfig.width = '950px';
     this.baseTableDialogConfig.data = { model: buyer };
 
     this.dialog
@@ -136,8 +135,8 @@ export class BuyerTableComponent extends basetable<Buyer> {
     // styleDetailsDialogConfig.panelClass = ['custom-dialog-color'];
     // styleDetailsDialogConfig.data = { model: entry };
 
-    this.baseTableDialogConfig.height = '600px';
-    this.baseTableDialogConfig.width = '300px';
+    this.baseTableDialogConfig.height = '840px';
+    this.baseTableDialogConfig.width = '950px';
     this.baseTableDialogConfig.data = { model: entry };
 
     // styleDetailsDialogConfig.position = {
@@ -149,7 +148,7 @@ export class BuyerTableComponent extends basetable<Buyer> {
       .afterClosed()
       .subscribe(() => {
         this.toastrService.success(`Buyer,  added  Successfully`);
-        // super.loadEntries(this.filterQuery);
+        super.loadEntries(this.filterQuery);
       });
   }
 
@@ -157,6 +156,7 @@ export class BuyerTableComponent extends basetable<Buyer> {
     super.deleteEntry(buyer).subscribe({
       next: (res) => {
         this.toastrService.success(`Style, deleted  Successfully`);
+        super.loadEntries(this.filterQuery);
       },
       error: (error: any) => {
         // console.log('ERROR : ', error.error);

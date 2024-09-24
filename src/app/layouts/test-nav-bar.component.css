@@ -1,3 +1,7 @@
+* {
+  font-size: 13px;
+}
+
 .sideButton {
 }
 
@@ -12,4 +16,13 @@
   vertical-align: auto;
   background-color: black;
   color: #fff;
+}
+.plMenuCSS {
+  max-width: 500px;
+  background-color: lightgreen;
+}
+
+button:hover {
+  background-color: #000;
+  color: rgb(249 115 22 / 1);
 }

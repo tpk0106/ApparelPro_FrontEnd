@@ -87,12 +87,12 @@ export const APPARELPRO_ENDPOINTS = {
     },
     ADDRESS: {
       GET_BY_PAGINATION: 'api/address/list',
-      GET_BY_ADDRESS_ID: 'api/address/list/',
+      GET_BY_ADDRESS_ID: 'api/address/list/byAddressId/',
       DOES_BANK_EXIST: 'api/address/list/does-bank-exist/',
-      POST: 'api/bank',
-      DELETE: 'api/bank/',
-      PUT: 'api/bank/',
-      PATCH: 'api/bank',
+      POST: 'api/address',
+      DELETE: 'api/address/',
+      PUT: 'api/address/',
+      PATCH: 'api/address',
     },
   },
   REGISTRATION: {

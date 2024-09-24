@@ -4,14 +4,14 @@
       style1="margin: 0; border: 3px solid rgb(104, 186, 129); overflow: hidden"
     >
       @for (menu of navData; track menu.routerLink) {
-      @if(menu.subMenus!==null){<mat-icon style1="font-size: 10px"
+      <!-- @if(menu.subMenus!==null){<mat-icon style1="font-size: 10px"
         >add-circle-outline</mat-icon
-      >}
+      >} -->
 
       <button
         class="{{ menu.routerLink }} menu-item border-bottom-menu"
         mat-menu-item
-        style="z-index: 1050; margin-left: 0"
+        style="margin-left: 0"
         hasBackdrop="false"
         (click)="displayRef($event, 'ref')"
       >
@@ -19,20 +19,13 @@
       </button>
 
       @if(menu.submenus !== null) {
-      <ul class="{{ menu.routerLink }}">
+      <ul class="{{ menu.routerLink }}" style="justify-items: auto">
         @for(subMenu of menu.subMenus; track subMenu.routerLink;let count =
         $count;){
         <button
-          class="{{ subMenu.routerLink }}"
+          id="{{ subMenu.label }}"
           mat-menu-item
-          mat-flat-button1
-          style="
-            z-index: 1050;
-            display: none;
-            margin: 3px;
-            font-size: 10px;
-            border: 2px solid red;
-          "
+          style="display: none"
           hasBackdrop1="false"
           (click)="clickNavbarLink($event)"
           routerLink="{{ subMenu.routerLink }}"

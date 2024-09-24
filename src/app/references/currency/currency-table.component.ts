@@ -110,7 +110,7 @@ export class CurrencyTableComponent extends basetable<Currency> {
     this.baseTableDialogConfig.width = '300px';
     this.baseTableDialogConfig.data = { model: {} };
     this.dialog
-      .open(CurrencyFormComponent, { data: { model: {} } })
+      .open(CurrencyFormComponent, this.baseTableDialogConfig)
       .afterClosed()
       .subscribe(() => {
         super.loadEntries(this.filterQuery);

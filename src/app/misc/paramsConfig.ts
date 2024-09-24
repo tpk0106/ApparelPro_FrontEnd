@@ -48,3 +48,12 @@ export const FORM_FIELD_OPTIONS = {
   //floatLabel: 'always',
   //hideRequiredMarker: true,
 };
+
+//export const BUYER_STATUS = 'BO' || 'NP' || 'BC' || 'AG';
+
+// export enum BUYER_STATUS {
+//   'BO' = 'Buying Office',
+//   'NP' = 'Notify Party',
+//   'AG' = 'Agent',
+//   'BC' = 'Buyer Consignee',
+// }

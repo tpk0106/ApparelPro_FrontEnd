@@ -23,8 +23,12 @@ export class BuyerService
 {
   constructor(private http: HttpClient) {}
 
-  deleteEntry(entry: Buyer): Observable<boolean> {
-    throw new Error('Method not implemented.');
+  deleteEntry(entry: Buyer): Observable<any> {
+    return this.http.delete(
+      APPARELPRO_ENDPOINTS.URLS.BASEURL +
+        APPARELPRO_ENDPOINTS.REFERENCE_SECTION.BUYER.DELETE +
+        entry.buyerCode
+    );
   }
 
   isDuplicate(code: string): Observable<boolean> {
@@ -71,7 +75,7 @@ export class BuyerService
           APPARELPRO_ENDPOINTS.REFERENCE_SECTION.BUYER.PUT,
         entry,
         {
-          params: { code: entry.buyerCode },
+          params: { buyerCode: entry.buyerCode },
         }
       )
       .pipe(

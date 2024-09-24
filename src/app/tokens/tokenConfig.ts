@@ -17,24 +17,31 @@ import { Address } from '../Models/References/Address';
 export const GARMENT_TYPE_SERVICE_PLUGIN = new InjectionToken<
   InjectorService<GarmentType>
 >('GarmentType.service.plugin');
+
 export const COUNTRY_SERVICE_PLUGIN = new InjectionToken<
   InjectorService<Country>
 >('country.service.plugin');
+
 export const CURRENCY_SERVICE_PLUGIN = new InjectionToken<
   InjectorService<Currency>
 >('currency.service.plugin');
+
 export const PO_SERVICE_PLUGIN = new InjectionToken<
   InjectorService<PurchaseOrder>
 >('po.service.plugin');
+
 export const BUYER_SERVICE_PLUGIN = new InjectionToken<InjectorService<Buyer>>(
   'buyer.service.plugin'
 );
+
 export const BASIS_SERVICE_PLUGIN = new InjectionToken<InjectorService<Basis>>(
   'basis.service.plugin'
 );
+
 export const BANK_SERVICE_PLUGIN = new InjectionToken<InjectorService<Bank>>(
   'basis.service.plugin'
 );
+
 export const CURRENCY_CONVERSION_SERVICE_PLUGIN = new InjectionToken<
   InjectorService<CurrencyConversion>
 >('currencyconversion.service.plugin');

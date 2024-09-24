@@ -3,14 +3,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { navbarData } from '../misc/nav-data';
 import { RouterLink, Router } from '@angular/router';
-import { LoginComponent } from '../auth/login.component';
-import { style } from '@angular/animations';
 import { HomeComponent } from '../home/home.component';
 import { NgFor } from '@angular/common';
-
 import { MatIcon } from '@angular/material/icon';
-
 import { MatTooltip } from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-testnavbar',
   standalone: true,
@@ -83,8 +80,8 @@ export class TestNavBarComponent {
       case 'General':
         ul = document.querySelector('ul.general');
         break;
-      case 'Order Management1':
-        ul = document.querySelector('ul.ordermanagement1');
+      case 'Order Mgt Ref':
+        ul = document.querySelector('ul.ordermanagementref');
         break;
       case 'Order Management':
         ul = document.querySelector('ul.ordermanagement');
@@ -96,7 +93,6 @@ export class TestNavBarComponent {
         ul = document.querySelector('ul.orderwiseinventory');
         break;
       case 'Production':
-        console.log('XXXXXXX', e.innerText);
         ul = document.querySelector('ul.productioncontrol');
         break;
       default:
@@ -110,70 +106,31 @@ export class TestNavBarComponent {
       if (att!.indexOf('display: none') < 0) {
         element.setAttribute('style', 'display: none');
       } else {
-        element.setAttribute('style', 'display: block');
+        element.setAttribute(
+          'style',
+          'display: block;background-color:#85c1e9;border-radius: 3px;padding-bottom:0px;color:#fff;font-weight:semibold'
+        );
+        element.setAttribute('class', 'plMenuCSS');
       }
-    }
-
-    // switch (ele) {
-    //   case 'ref':
-    //     const div1 = document.querySelector('.general');
-    //     var childs = div1?.children;
-    //     //console.log(childs?.length);
-    //     for (var i = 0; i < childs!.length; i++) {
-    //       var element = childs![i];
-    //       //console.log(element);
-    //       var att = element.getAttribute('style');
-    //       if (att!.indexOf('display:none') < 0) {
-    //         element.setAttribute('style', 'display:none');
-    //       } else {
-    //         element.setAttribute('style', 'display:block');
-    //       }
-    //     }
-
-    //     //div1!.style.display = div1?.style.display == 'block' ? 'none' : 'block';
-    //     break;
-    //   case 'prod':
-    //     const div = document.getElementById('prod');
-    //     div!.style.display = div?.style.display == 'block' ? 'none' : 'block';
-    //     break;
-    //   case 'ordMgt':
-    //     const div2 = document.getElementById('ordMgt');
-    //     div2!.style.display = div2?.style.display == 'block' ? 'none' : 'block';
-    //     break;
-    // }
-  }
-
-  displayRefcopy(event: MouseEvent, ele: string) {
-    console.log(event.currentTarget);
-    //var div = document.querySelector('div');
-    //  let div = '';
-    switch (ele) {
-      case 'ref':
-        const div1 = document.getElementById('ref');
-        div1!.style.display = div1?.style.display == 'block' ? 'none' : 'block';
-        break;
-      case 'prod':
-        const div = document.getElementById('prod');
-        div!.style.display = div?.style.display == 'block' ? 'none' : 'block';
-        break;
-      case 'ordMgt':
-        const div2 = document.getElementById('ordMgt');
-        div2!.style.display = div2?.style.display == 'block' ? 'none' : 'block';
-        break;
     }
   }
 
   clickNavbarLink(event: MouseEvent) {
     var e = event.currentTarget as HTMLElement;
+    //e.removeAttribute('style');
     console.log(e.getAttribute('class'));
 
     var att = e.getAttribute('class');
+    //e.removeAttribute('style');
+    //e.setAttribute('style', 'background-color:#000;color:rgb(249 115 22 / 1)');
 
     if (att!.indexOf('currency-table') > 0) {
       console.log('routing.....');
-
+      e.setAttribute(
+        'style',
+        'background-color:#000;color:rgb(249 115 22 / 1)'
+      );
       this.router.navigate(['/currency-table']);
     }
-    //  this.router.navigate(['/currency-table']);
   }
 }

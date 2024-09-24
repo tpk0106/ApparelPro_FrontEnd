@@ -52,7 +52,7 @@ export abstract class baseform<T> {
   }
 
   editEntry(entry: T): Observable<any> {
-    console.log('execute edit in base form:');
+    console.log('execute EDIT in base form:');
 
     return this.baseService.updateEntry(entry).pipe(
       catchError((error: any) => {

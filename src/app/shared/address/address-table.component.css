@@ -127,3 +127,9 @@ img {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.add-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0.5em;
+}

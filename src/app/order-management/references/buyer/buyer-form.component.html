@@ -24,7 +24,7 @@
           required
           (input)="onInput($event)"
         />
-        <mat-hint align="end">{{ value().length }}/30</mat-hint>
+        <mat-hint align="end">{{ value().length }}/200</mat-hint>
 
         <mat-error *ngIf="buyerForm.get('name')?.hasError('required')"
           >country name required</mat-error
@@ -34,20 +34,37 @@
         >
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="form-field">
+      <mat-form-field
+        *ngIf="statusList"
+        appearance="outline"
+        class="form-field"
+      >
+        <mat-label> Select Status</mat-label>
+        <mat-select id="status" formControlName="status">
+          <mat-option *ngFor="let status of statusList" [value]="status.key">
+            {{ status.val }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+        <mat-error *ngIf="buyerForm.get('status')?.hasError('required')">
+          Please select Buyer Status
+        </mat-error>
+        <mat-hint>click the drop down list</mat-hint>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline" class="form-field">
         <mat-label>Status</mat-label>
         <input
           matInput
           formControlName="status"
           placeholder="Buyer Status"
           required
-        />
-        <mat-hint align="end">{{ buyer.status }}</mat-hint>
+          [value]="BUYER_STATUS.BC"
+        />      
 
         <mat-error *ngIf="buyerForm.get('status')?.hasError('required')"
-          >country name required</mat-error
+          >Buyer Status required</mat-error
         >
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Tel Nos.</mat-label>
@@ -64,10 +81,38 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Fax Nos.</mat-label>
+        <input matInput formControlName="fax" placeholder="Fax Nos." />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>CUSDEC</mat-label>
         <input matInput formControlName="cusdec" placeholder="CUSDEC" />
       </mat-form-field>
     </form>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Status</mat-label>
+      <input
+        matInput
+        formControlName="status"
+        placeholder="Buyer Status"
+        required
+      />
+
+      <mat-error *ngIf="buyerForm.get('status')?.hasError('required')"
+        >Buyer Status required</mat-error
+      >
+    </mat-form-field>
+
+    <!-- address table -->
+    <div style="margin: auto">
+      <app-address-table
+        [addressId]="this.data.model.addressId"
+        [buyerCode]="this.data.model.buyerCode"
+      ></app-address-table>
+    </div>
+    <!-- end of address tabel -->
   </mat-dialog-content>
   <mat-dialog-actions>
     <div class="flex w-full content-center justify-between mt-3">

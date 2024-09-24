@@ -67,8 +67,6 @@ import {
 } from '@angular/material/form-field';
 import { BuyerService } from './Services/buyer.service';
 
-//import { navbarData } from './misc/nav-data';
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -90,6 +88,7 @@ export const appConfig: ApplicationConfig = {
     CurrencyExchangeService,
     UnitService,
     StyleDetailsService,
+    AddressService,
     provideNativeDateAdapter(),
     { provide: MAT_DATE_LOCALE, useValue: 'en-AU' }, // set to AU date format
     {
