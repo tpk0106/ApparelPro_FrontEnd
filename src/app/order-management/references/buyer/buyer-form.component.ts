@@ -1,6 +1,4 @@
 import { Component, Inject, signal } from '@angular/core';
-import { baseform } from '../../../common/baseform';
-import { Buyer } from '../../../Models/References/Buyer';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -11,34 +9,33 @@ import {
 } from '@angular/forms';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  ADDRESS_SERVICE_PLUGIN,
-  BUYER_SERVICE_PLUGIN,
-} from '../../../tokens/tokenConfig';
-import { InjectorService } from '../../../Services/InjectorService';
 import { ToastrService } from 'ngx-toastr';
-import { BuyerService } from '../../../Services/buyer.service';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogContent,
   MatDialogActions,
 } from '@angular/material/dialog';
-import { AngularMaterialModule } from '../../../angular-material/angular-material.module';
 import { NgIf, NgFor } from '@angular/common';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
-import { Address } from '../../../Models/References/Address';
-import { AddressService } from '../../../Services/address.service';
-import { basetable } from '../../../common/basetable';
-import { AddressTableComponent } from '../../../shared/address/address';
 import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+
+import { Address } from '../../../Models/References/Address';
+import { AddressTableComponent } from '../../../shared/address/address';
 import { APPAREL_PRO_UI_PARAMS } from '../../../misc/paramsConfig';
 import { BUYER_STATUS } from '../../../misc/status-info';
-import { publishFacade } from '@angular/compiler';
-interface st {
-  key: any;
-  val: any;
+import { baseform } from '../../../common/baseform';
+import { Buyer } from '../../../Models/References/Buyer';
+import { BUYER_SERVICE_PLUGIN } from '../../../tokens/tokenConfig';
+import { InjectorService } from '../../../Services/InjectorService';
+import { BuyerService } from '../../../Services/buyer.service';
+import { AngularMaterialModule } from '../../../angular-material/angular-material.module';
+
+interface BuyerStatus {
+  key: string;
+  val: string;
 }
+
 @Component({
   selector: 'app-buyer-form',
   standalone: true,
@@ -64,11 +61,9 @@ export class BuyerFormComponent extends baseform<Buyer> {
 
   addresses: Address[] = [];
 
-  //@Inject(ADDRESS_SERVICE_PLUGIN) addressService: AddressService | undefined;
-
   protected readonly value = signal('');
 
-  statusList: st[] = [];
+  buyerStatusList: BuyerStatus[] = [];
 
   protected onInput(event: Event) {
     this.value.set((event.target as HTMLInputElement).value);
@@ -77,8 +72,6 @@ export class BuyerFormComponent extends baseform<Buyer> {
   filterQuery: string = '';
   buyer!: Buyer;
   address!: Address;
-
-  //public BUYER_STATUS = BUYER_STATUS;
 
   changes = new BehaviorSubject<any>('').asObservable;
 
@@ -91,24 +84,17 @@ export class BuyerFormComponent extends baseform<Buyer> {
     private dialogRef: MatDialogRef<BuyerFormComponent>,
     @Inject('defaultSortColumn') defaultSortCol: string,
     @Inject(MAT_DIALOG_DATA)
-    public override data: { model: Buyer } // private addressService: AddressService
+    public override data: { model: Buyer }
   ) {
     super(buyerService, validationService, data);
     this.defaultSortColumn = defaultSortCol;
-    // let key: keyof typeof BUYER_STATUS = this.data.model.status;
-    // let value = BUYER_STATUS[key];
-    // console.log(key);
-
-    // const statusList = [];
 
     this.buyerForm = this.fb.group({
       buyerCode: [
-        //this.data.model.buyerCode,
         {
           value: this.data.model.buyerCode,
           disabled: this.data.model.buyerCode > 0,
         },
-        // Validators.compose([Validators.required, Validators.maxLength(30)]),
       ],
       name: [
         this.data.model.name,
@@ -136,7 +122,6 @@ export class BuyerFormComponent extends baseform<Buyer> {
       ],
     });
 
-    // this.Buyer = this.data.model;
     this.id = this.data.model.buyerCode;
     this.edit = this.id ? true : false;
     if (this.edit) this.value.set(this.data.model.name);
@@ -147,26 +132,17 @@ export class BuyerFormComponent extends baseform<Buyer> {
 
   addAddress(address: Address) {}
 
-  processStatusList() {
-    let myobj: st | null = {
-      key: null,
-      val: null,
+  processBuyerStatusList() {
+    let buyerStatus: BuyerStatus = {
+      key: '',
+      val: '',
     };
-    this.statusList = [];
-    console.log('prior to add new array :', this.statusList);
+    this.buyerStatusList = [];
+    console.log('prior to add new array :', this.buyerStatusList);
     for (let [key, value] of Object.entries(BUYER_STATUS)) {
-      myobj.key = key;
-      myobj.val = value;
-      this.statusList.push(myobj);
-      console.log('new array :', this.statusList);
-
-      console.log('key : ', myobj.key);
-      console.log('val : ', myobj.val);
-      console.log(this.statusList.length);
-    }
-
-    for (let x = 0; x < this.statusList.length; x++) {
-      console.log(this, this.statusList[x]);
+      buyerStatus.key = key;
+      buyerStatus.val = value;
+      this.buyerStatusList.push({ ...buyerStatus });
     }
   }
 
@@ -181,7 +157,7 @@ export class BuyerFormComponent extends baseform<Buyer> {
           console.log('Form was updated by the user.');
         }
       });
-    this.processStatusList();
+    this.processBuyerStatusList();
   }
 
   pageIndex: number = 10;
@@ -189,8 +165,6 @@ export class BuyerFormComponent extends baseform<Buyer> {
   defaultSortColumn!: string;
 
   submitEntry(entry: Buyer) {
-    console.log('submit entry : ', entry);
-
     const buyer = entry.buyerCode > 0 ? entry : <Buyer>{};
     if (buyer) {
       buyer.name = this.buyerForm.controls['name'].value;
@@ -199,6 +173,8 @@ export class BuyerFormComponent extends baseform<Buyer> {
       buyer.cusdec = this.buyerForm.controls['cusdec'].value;
       buyer.fax = this.buyerForm.controls['fax'].value;
       buyer.status = this.buyerForm.controls['status'].value;
+      buyer.buyerCode = this.data.model.buyerCode;
+      buyer.addressId = this.data.model.addressId;
     }
     if (this.id > 0) {
       super.editEntry(buyer).subscribe((res) => {
@@ -213,8 +189,6 @@ export class BuyerFormComponent extends baseform<Buyer> {
         this.toastrService.success(`Buyer: ${buyer.name} updated Successfully`);
       });
     } else {
-      console.log('NEW Buyer : ', buyer);
-
       super
         .addEntry(buyer)
         // .pipe(

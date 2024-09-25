@@ -20,28 +20,31 @@
         <input
           matInput
           formControlName="name"
-          placeholder="country name"
+          placeholder="Buyer name"
           required
           (input)="onInput($event)"
         />
         <mat-hint align="end">{{ value().length }}/200</mat-hint>
 
         <mat-error *ngIf="buyerForm.get('name')?.hasError('required')"
-          >country name required</mat-error
+          >Buyer name required</mat-error
         >
         <mat-error *ngIf="buyerForm.get('name')?.hasError('maxlength')"
-          >code maximum length is 15</mat-error
+          >Buyer name maximum length is 15</mat-error
         >
       </mat-form-field>
 
       <mat-form-field
-        *ngIf="statusList"
+        *ngIf="buyerStatusList"
         appearance="outline"
         class="form-field"
       >
-        <mat-label> Select Status</mat-label>
+        <mat-label>Select Status</mat-label>
         <mat-select id="status" formControlName="status">
-          <mat-option *ngFor="let status of statusList" [value]="status.key">
+          <mat-option
+            *ngFor="let status of buyerStatusList"
+            [value]="status.key"
+          >
             {{ status.val }}
           </mat-option>
         </mat-select>
@@ -91,7 +94,7 @@
       </mat-form-field>
     </form>
 
-    <mat-form-field appearance="outline" class="form-field">
+    <!-- <mat-form-field appearance="outline" class="form-field">
       <mat-label>Status</mat-label>
       <input
         matInput
@@ -103,7 +106,7 @@
       <mat-error *ngIf="buyerForm.get('status')?.hasError('required')"
         >Buyer Status required</mat-error
       >
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!-- address table -->
     <div style="margin: auto">

@@ -12,9 +12,9 @@ export enum STATUS {
 
 export enum BUYER_STATUS {
   'BO' = 'Buying Office',
+  'BC' = 'Buyer Consignee',
   'NP' = 'Notify Party',
   'AG' = 'Agent',
-  'BC' = 'Buyer Consignee',
 }
 
 export enum ADDRESS_TYPE {

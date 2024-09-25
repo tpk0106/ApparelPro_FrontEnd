@@ -13,7 +13,7 @@
             <mat-radio-group
               aria-labelledby="radio-group-label"
               class="radio-group"
-              formControlName="baseCurr"
+              formControlName="name"
             >
               <div>
                 <label id="radio-group-label"
@@ -38,6 +38,15 @@
                 [placeholder]="placeholder"
                 (keyup)="filterChanged.next(filter.value)"
               />
+              <button
+                mat-flat-button
+                color="primary"
+                class="main-submit-button shadow-effects"
+                (click)="addEntry(newBuyer)"
+              >
+                <mat-icon>fiber_new</mat-icon>
+                Add
+              </button>
             </div>
           </mat-form-field>
         </div>
